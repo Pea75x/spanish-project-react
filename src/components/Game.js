@@ -40,6 +40,8 @@ function Game() {
       const updatedWords = sentence.words.map((word, wordIndex) => {
         const playerAnswer = playersSentences[sentenceIndex][wordIndex];
         const isCorrect = playerAnswer === word.word;
+        console.log(playerAnswer, word.word, isCorrect);
+
         if (!isCorrect) {
           currentScore -= 1;
           gameEnd = false;

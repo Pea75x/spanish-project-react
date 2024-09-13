@@ -44,5 +44,23 @@
 }
 
 .sentence-container {
-  margin: 3px;
+  margin: 2px;
+}
+
+.answer-input {
+  width: 150px;
+}
+
+.filtered-list {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid gray;
+  width: 150px;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.selected-word:hover {
+  background-color: #f0f0f0;
 }
