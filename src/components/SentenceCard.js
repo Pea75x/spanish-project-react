@@ -5,7 +5,7 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
   const [playersAnswer, setPlayersAnswer] = React.useState(
     new Array(sentence.words.length).fill('')
   );
-  const [visibleInputIndex, setVisibleInputIndex] = React.useState(null);
+  const [visibleInputIndex, setVisibleInputIndex] = React.useState(-1);
   const containerRef = useRef(null);
   const inputRefs = useRef([]);
 
@@ -14,13 +14,12 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
     const updatedAnswer = playersAnswer.map((answer, index) =>
       index === wordIndex ? newValue : answer
     );
-    console.log('handle change:', updatedAnswer);
     setPlayersAnswer(updatedAnswer);
+    getAnswers(updatedAnswer, sentenceIndex);
     setFilteredWords(words.filter((word) => word.word.includes(newValue)));
   }
 
   function onInputClick(wordIndex) {
-    console.log('input click', playersAnswer);
     setFilteredWords(words);
     setVisibleInputIndex(wordIndex);
   }
@@ -29,29 +28,14 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
     const updatedAnswer = playersAnswer.map((word, index) =>
       index === wordIndex ? playersValue : word
     );
-    console.log('onWordClick', updatedAnswer);
     setPlayersAnswer(updatedAnswer);
     getAnswers(updatedAnswer, sentenceIndex);
     setVisibleInputIndex(null); // Hide the list after a word is clicked
   }
 
   function handleClickOutside(event) {
-    console.log('HandleClickOutside1: ', playersAnswer);
     if (containerRef.current && !containerRef.current.contains(event.target)) {
-      console.log('HandleClickOutside2: ', playersAnswer);
       setVisibleInputIndex(null); // Hide the list if clicking outside
-    }
-  }
-
-  function handleKeyDown(event, wordIndex) {
-    if (event.key === 'Tab') {
-      console.log('handlekeydown', playersAnswer);
-      event.preventDefault();
-      const nextIndex = (wordIndex + 1) % sentence.words.length;
-      if (inputRefs.current[nextIndex]) {
-        inputRefs.current[nextIndex].focus();
-      }
-      setVisibleInputIndex(wordIndex + 1);
     }
   }
 
@@ -77,7 +61,6 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
               type='text'
               id='myInput'
               onChange={(event) => handleChange(event, wordIndex)}
-              onKeyDown={(event) => handleKeyDown(event, wordIndex)}
               ref={(el) => (inputRefs.current[wordIndex] = el)}
             />
             {visibleInputIndex === wordIndex && filteredWords && (

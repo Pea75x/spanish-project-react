@@ -27,10 +27,11 @@ function Game() {
   }, []);
 
   function getAnswers(answer, sentenceIndex) {
-    const updatedGuesses = playersSentences.map((sentence, i) =>
+    const updatedAnswer = playersSentences.map((sentence, i) =>
       i === sentenceIndex ? answer : sentence
     );
-    setPlayersSentences(updatedGuesses);
+
+    setPlayersSentences(updatedAnswer);
   }
 
   function markAnswers() {
@@ -40,7 +41,6 @@ function Game() {
       const updatedWords = sentence.words.map((word, wordIndex) => {
         const playerAnswer = playersSentences[sentenceIndex][wordIndex];
         const isCorrect = playerAnswer === word.word;
-        console.log(playerAnswer, word.word, isCorrect);
 
         if (!isCorrect) {
           currentScore -= 1;
