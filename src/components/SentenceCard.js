@@ -48,7 +48,7 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
 
   return (
     <div className='m-5' ref={containerRef}>
-      <h2 className='title --bulma-danger-dark'>{sentence.translation}</h2>
+      <h2 className='title'>{sentence.translation}</h2>
       <div className='sentences-container'>
         {sentence.words.map((word, wordIndex) => (
           <div className='sentence-container' key={wordIndex}>
