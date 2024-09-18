@@ -2,6 +2,7 @@ import axios from 'axios';
 import { baseUrl } from '../config';
 
 export const loginUser = async (user) => {
+  console.log('base url:', baseUrl);
   const options = {
     method: 'POST',
     url: `${baseUrl}/auth/login/`,

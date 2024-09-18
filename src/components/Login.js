@@ -11,6 +11,8 @@ function Login() {
     password: ''
   });
 
+  console.log('production url:', process.env.REACT_APP_PROD_URL);
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -26,7 +28,6 @@ function Login() {
 
   function handleChange(event) {
     setUser({ ...user, [event.target.name]: event.target.value });
-    console.log('user', user);
   }
 
   return (
