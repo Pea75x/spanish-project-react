@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
 import Game from './components/Game';
-import SignUp from './components/SignUp';
 import MainPage from './components/MainPage';
+import SignUp from './components/SignUp';
 
 function App() {
   return (

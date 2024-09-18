@@ -6,7 +6,8 @@ export const loginUser = async (user) => {
     method: 'POST',
     url: `${baseUrl}/auth/login/`,
     headers: {
-      Accept: 'application/json'
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': 'https://spanish-project.netlify.app/'
     },
     data: {
       auth: user

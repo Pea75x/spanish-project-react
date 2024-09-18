@@ -1,7 +1,8 @@
 import React from 'react';
-import { getAllItems } from '../api/items';
+import { getAllItems, getItemById, createNewItem } from '../api/items';
 import SentenceCard from './SentenceCard';
-import Popup from './Popup';
+import GameOver from './GameOver';
+import { userId } from '../api/auth';
 
 function Game() {
   const [sentences, setSentences] = React.useState([]);
@@ -9,13 +10,17 @@ function Game() {
   const [words, setWords] = React.useState(null);
   const [score, setScore] = React.useState(100);
   const [gameOver, setGameOver] = React.useState(false);
+  const [game, setGame] = React.useState({});
+  const [gameScore, setGameScore] = React.useState({});
 
   React.useEffect(() => {
     const getData = async () => {
       try {
         const allSentences = await getAllItems('sentences');
         const allWords = await getAllItems('words');
+        const game = await getItemById('games', 2);
 
+        setGame(game);
         setSentences(allSentences.data);
         setWords(allWords.data);
         setPlayersSentences(new Array(allSentences.data.length).fill([]));
@@ -41,7 +46,6 @@ function Game() {
       const updatedWords = sentence.words.map((word, wordIndex) => {
         const playerAnswer = playersSentences[sentenceIndex][wordIndex];
         const isCorrect = playerAnswer === word.word;
-
         if (!isCorrect) {
           currentScore -= 1;
           gameEnd = false;
@@ -51,7 +55,6 @@ function Game() {
           correct: isCorrect
         };
       });
-
       return {
         ...sentence,
         words: updatedWords
@@ -59,7 +62,29 @@ function Game() {
     });
     setScore(currentScore);
     setSentences(updatedSentences);
-    setGameOver(gameEnd);
+    if (!!gameEnd) {
+      endGame(currentScore);
+    }
+  }
+
+  function endGame(score) {
+    setGameOver(true);
+
+    const getScoreData = {
+      game_points: score,
+      user_id: userId(),
+      game_id: game.id
+    };
+
+    const createGameScore = async () => {
+      try {
+        const getGameScore = await createNewItem('game_scores', getScoreData);
+        setGameScore(getGameScore);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    createGameScore();
   }
 
   return (
@@ -67,7 +92,7 @@ function Game() {
       <h1 className='title is-1 has-text-centered'>
         Pretérito Indefinido vs Pretérito Imperfecto
       </h1>
-      {gameOver && <Popup score={score} />}
+      {gameOver && <GameOver gameScore={gameScore} game={game} />}
       {sentences ? (
         <div>
           {sentences.map((sentence, index) => (
