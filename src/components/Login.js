@@ -2,8 +2,10 @@ import React from 'react';
 import { loginUser } from '../api/auth';
 import FormInput from './FormInput';
 import logo from '../logo.png';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = React.useState('');
 
   const [user, setUser] = React.useState({
@@ -11,16 +13,21 @@ function Login() {
     password: ''
   });
 
-  console.log('production url:', process.env.REACT_APP_PROD_URL);
-
   function handleSubmit(event) {
     event.preventDefault();
 
     const getData = async () => {
       try {
         await loginUser(user);
+        navigate(`/`);
       } catch (error) {
-        setErrorMessage(error.response.data);
+        if (error.response?.data) {
+          setErrorMessage(error.response.data);
+        } else if (error.message) {
+          setErrorMessage(error.message);
+        } else {
+          setErrorMessage('Error');
+        }
       }
     };
     getData();

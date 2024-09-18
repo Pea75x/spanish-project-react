@@ -2,24 +2,39 @@ import React from 'react';
 import { createUser } from '../api/auth';
 import FormInput from './FormInput';
 import logo from '../logo.png';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = React.useState('');
 
   const [user, setUser] = React.useState({
     username: '',
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   });
 
   function handleSubmit(event) {
     event.preventDefault();
 
+    if (user.password !== user.confirmPassword) {
+      setErrorMessage('Passwords do not match');
+      return;
+    }
+
     const getData = async () => {
       try {
-        await createUser({ user: user });
+        await createUser(user);
+        navigate(`/`);
       } catch (error) {
-        setErrorMessage(error.response.data);
+        if (error.response?.data) {
+          setErrorMessage(error.response.data);
+        } else if (error.message) {
+          setErrorMessage(error.message);
+        } else {
+          setErrorMessage('Error');
+        }
       }
     };
     getData();
@@ -27,7 +42,6 @@ function SignUp() {
 
   function handleChange(event) {
     setUser({ ...user, [event.target.name]: event.target.value });
-    console.log('user', user);
   }
 
   return (
@@ -61,6 +75,14 @@ function SignUp() {
             onChange={handleChange}
             name='password'
             value={user.password}
+          />
+          <FormInput
+            label='Confirm password'
+            type='password'
+            required
+            onChange={handleChange}
+            name='confirmPassword'
+            value={user.confirmPassword}
           />
           <div className='error has-text-danger'>{errorMessage}</div>
           <button type='submit' className='button'>

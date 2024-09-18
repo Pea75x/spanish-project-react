@@ -2,7 +2,6 @@ import axios from 'axios';
 import { baseUrl } from '../config';
 
 export const loginUser = async (user) => {
-  console.log('base url:', baseUrl);
   const options = {
     method: 'POST',
     url: `${baseUrl}/auth/login/`,
@@ -35,3 +34,19 @@ export const createUser = async (user) => {
 };
 
 export const logoutUser = localStorage.removeItem('token');
+
+export const isAdmin = () => {
+  const token = sessionStorage.getItem('token');
+  if (!token) return false;
+
+  const userObject = JSON.parse(window.atob(token.split('.')[1]));
+  return !!userObject.admin;
+};
+
+export const userId = () => {
+  const token = sessionStorage.getItem('token');
+  if (!token) return false;
+
+  const userObject = JSON.parse(window.atob(token.split('.')[1]));
+  return userObject.user_id;
+};
