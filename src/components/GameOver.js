@@ -1,7 +1,10 @@
 import React from 'react';
 import medal from '../medal.png';
+import { useNavigate } from 'react-router-dom';
 
 function GameOver({ gameScore, game }) {
+  const navigate = useNavigate();
+
   return (
     <div className='popup-container'>
       <div className=''>
@@ -28,6 +31,9 @@ function GameOver({ gameScore, game }) {
           ))}
         </div>
       </div>
+      <button className='button mt-4' onClick={() => navigate(`/`)}>
+        Go Back
+      </button>
     </div>
   );
 }

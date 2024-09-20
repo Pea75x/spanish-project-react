@@ -89,9 +89,7 @@ function Game() {
 
   return (
     <div>
-      <h1 className='title is-1 has-text-centered'>
-        Pretérito Indefinido vs Pretérito Imperfecto
-      </h1>
+      <h1 className='title is-1 has-text-centered p-4'>{game.name}</h1>
       {gameOver && <GameOver gameScore={gameScore} game={game} />}
       {sentences ? (
         <div>

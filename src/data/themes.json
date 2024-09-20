@@ -1,0 +1,21 @@
+[
+  { "code": "presente", "value": "Presente" },
+  { "code": "futuro", "value": "Futuro" },
+  { "code": "me", "value": "Me" },
+  { "code": "you", "value": "You" },
+  { "code": "he/he", "value": "He/She" },
+  { "code": "we", "value": "We" },
+  { "code": "they", "value": "They" },
+  { "code": "you_plural", "value": "You (plural)" },
+  { "code": "weather", "value": "Weather" },
+  { "code": "food", "value": "Food" },
+  { "code": "activities", "value": "Activities" },
+  { "code": "flirting", "value": "Flirting" },
+  { "code": "travel", "value": "Travel" },
+  { "code": "work", "value": "Work" },
+  { "code": "time", "value": "Time" },
+  { "code": "numbers", "value": "Numbers" },
+  { "code": "shopping", "value": "Shopping" },
+  { "code": "pretérito_indefinido", "value": "Pretérito Indefinido" },
+  { "code": "pretérito_imperfecto", "value": "Pretérito Imperfecto" }
+]
