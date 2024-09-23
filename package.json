@@ -57,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "react-test-renderer": "^18.3.1",
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4"
   }
