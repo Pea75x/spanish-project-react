@@ -6,6 +6,7 @@ import MainPage from './components/MainPage';
 import SignUp from './components/SignUp';
 import Words from './components/Words';
 import Sentences from './components/Sentences';
+import Games from './components/Games';
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/game' element={<Game />} />
-        <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/signup' element={<SignUp />} />
         <Route path='/words' element={<Words />} />
         <Route path='/sentences' element={<Sentences />} />
+        <Route path='/games' element={<Games />} />
       </Routes>
     </BrowserRouter>
   );

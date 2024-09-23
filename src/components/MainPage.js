@@ -1,33 +1,23 @@
 import React from 'react';
-import { isAdmin, userId } from '../api/auth';
+import { userId } from '../api/auth';
 import logo from '../logo.png';
-import { Link } from 'react-router-dom';
+import ButtonsContainer from './ButtonsContainer';
 
 function MainPage() {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    setLoggedIn(userId);
+  }, [userId]);
+
+  console.log(userId());
   return (
     <div className='main-container'>
       <img src={logo} alt='logo' className='logo-large mt-6' />
-      {userId === false ? (
-        <div className='home-buttons-container'>
-          <Link className='button large-button' to='/words'>
-            Words
-          </Link>
-          <Link className='button large-button' to='/sentences'>
-            Sentences
-          </Link>
-          <Link className='button large-button' to='/games'>
-            Games
-          </Link>
-        </div>
+      {loggedIn ? (
+        <ButtonsContainer buttons={['words', 'sentences', 'games']} />
       ) : (
-        <div>
-          <Link className='button large-button' to='/login'>
-            Log in
-          </Link>
-          <Link className='button large-button' to='/sign-up'>
-            Sign up
-          </Link>
-        </div>
+        <ButtonsContainer buttons={['login', 'signup']} />
       )}
     </div>
   );

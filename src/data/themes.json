@@ -1,6 +1,4 @@
 [
-  { "code": "presente", "value": "Presente" },
-  { "code": "futuro", "value": "Futuro" },
   { "code": "me", "value": "Me" },
   { "code": "you", "value": "You" },
   { "code": "he/he", "value": "He/She" },
@@ -16,6 +14,20 @@
   { "code": "time", "value": "Time" },
   { "code": "numbers", "value": "Numbers" },
   { "code": "shopping", "value": "Shopping" },
-  { "code": "pretérito_indefinido", "value": "Pretérito Indefinido" },
-  { "code": "pretérito_imperfecto", "value": "Pretérito Imperfecto" }
+  { "code": "preterito_indefinido", "value": "Pretérito Indefinido" },
+  { "code": "preterito_imperfecto", "value": "Pretérito Imperfecto" },
+  {
+    "code": "preterito_perfecto_compuesto",
+    "value": "Pretérito Perfecto Compuesto"
+  },
+  {
+    "code": "preterito_pluscuamperfecto",
+    "value": "Pretérito Pluscuamperfecto"
+  },
+  { "code": "presente", "value": "Presente" },
+  { "code": "futuro_simple", "value": "Futuro Simple" },
+  { "code": "futuro_compuesto", "value": "Futuro Compuesto" },
+  { "code": "condicional_simple", "value": "Condicional Simple" },
+  { "code": "indicativo", "value": "Indicativo" },
+  { "code": "condicional_simple", "value": "Subjuntivo" }
 ]

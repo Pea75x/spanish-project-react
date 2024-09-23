@@ -46,10 +46,7 @@ function SearchList({ item, name }) {
       <h1 className='title is-1'>{titleCase(item)}</h1>
       <div className='sub-container'>
         <div className='categories-box'>
-          <button
-            className='button column is-two-thirds m-2 py-1'
-            onClick={reset}
-          >
+          <button className='button m-2' onClick={reset}>
             All
           </button>
           {themes.map((theme) => (
@@ -74,7 +71,7 @@ function SearchList({ item, name }) {
             />
           </div>
           <div className='words-list mx-6 my-2'>
-            {filteredList.length && (
+            {filteredList.length ? (
               <div>
                 {filteredList.map((value) => (
                   <div className='m-2 link' key={value.id}>
@@ -82,6 +79,8 @@ function SearchList({ item, name }) {
                   </div>
                 ))}
               </div>
+            ) : (
+              <div>No entries found</div>
             )}
           </div>
         </div>
