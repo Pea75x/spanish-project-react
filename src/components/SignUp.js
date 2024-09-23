@@ -46,7 +46,7 @@ function SignUp() {
 
   return (
     <div className='p-4 login-container'>
-      <img src={logo} alt='logo' className='logo' />
+      <img src={logo} alt='logo' className='logo-small' />
       <div className='card'>
         <div className='card-header'>
           <h1 className='title pl-6 py-4'>Sign Up</h1>
