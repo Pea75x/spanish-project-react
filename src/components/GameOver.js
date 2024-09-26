@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function GameOver({ gameScore, game }) {
   const navigate = useNavigate();
-
+  console.log('game', game);
   return (
     <div className='popup-container'>
       <div className=''>

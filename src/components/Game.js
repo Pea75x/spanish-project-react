@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAllItems, createNewItem } from '../api/items';
+import { getAllItems, createNewItem, getItemById } from '../api/items';
 import SentenceCard from './SentenceCard';
 import GameOver from './GameOver';
 import { userId } from '../api/auth';
@@ -7,24 +7,25 @@ import { useLocation } from 'react-router-dom';
 
 function Game() {
   const { state } = useLocation();
-  const { gameName } = state;
+  const { gameId } = state;
   const [sentences, setSentences] = React.useState([]);
   const [playersSentences, setPlayersSentences] = React.useState([]);
   const [words, setWords] = React.useState(null);
   const [score, setScore] = React.useState(100);
   const [gameOver, setGameOver] = React.useState(false);
-  const [game, setGame] = React.useState(gameName);
+  const [game, setGame] = React.useState({});
   const [gameScore, setGameScore] = React.useState({});
 
   React.useEffect(() => {
     const getData = async () => {
       try {
+        const gameData = await getItemById('games', gameId);
         const allSentences = await getAllItems('sentences');
         const allWords = await getAllItems('words');
 
         let themeSentences = [];
 
-        game.themes.forEach((theme) =>
+        gameData.themes.forEach((theme) =>
           allSentences.data.forEach(
             (sentence) =>
               sentence.themes.includes(theme) &&
@@ -33,9 +34,11 @@ function Game() {
           )
         );
 
+        setGame(gameData);
         setSentences(themeSentences);
         setWords(allWords.data);
         setPlayersSentences(new Array(allSentences.data.length).fill([]));
+        console.log('game data - ', gameData);
       } catch (err) {
         console.log('error', err);
       }

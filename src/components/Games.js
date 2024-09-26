@@ -28,7 +28,7 @@ function Games() {
           {games.map((game) => (
             <button
               className='button large-button'
-              onClick={() => navigate('/game', { state: { gameName: game } })}
+              onClick={() => navigate('/game', { state: { gameId: game.id } })}
             >
               {titleCase(game.name)}
             </button>
