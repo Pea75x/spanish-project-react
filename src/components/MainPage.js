@@ -10,7 +10,6 @@ function MainPage() {
     setLoggedIn(userId);
   }, [userId]);
 
-  console.log(userId());
   return (
     <div className='main-container'>
       <img src={logo} alt='logo' className='logo-large mt-6' />

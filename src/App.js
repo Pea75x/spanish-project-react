@@ -7,6 +7,7 @@ import SignUp from './components/SignUp';
 import Words from './components/Words';
 import Sentences from './components/Sentences';
 import Games from './components/Games';
+import Word from './components/Word';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/game' element={<Game />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/words' element={<Words />} />
+        <Route path='/words-show' element={<Word />} />
         <Route path='/sentences' element={<Sentences />} />
         <Route path='/games' element={<Games />} />
       </Routes>

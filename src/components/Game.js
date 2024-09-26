@@ -21,7 +21,7 @@ function Game() {
       try {
         const allSentences = await getAllItems('sentences');
         const allWords = await getAllItems('words');
-        console.log('game', game);
+
         let themeSentences = [];
 
         game.themes.forEach((theme) =>
@@ -32,7 +32,7 @@ function Game() {
               themeSentences.push(sentence)
           )
         );
-        console.log('theme sentences', themeSentences);
+
         setSentences(themeSentences);
         setWords(allWords.data);
         setPlayersSentences(new Array(allSentences.data.length).fill([]));

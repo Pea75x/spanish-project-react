@@ -13,7 +13,6 @@ function Games() {
       try {
         const gameData = await getAllItems('games');
         setGames(gameData.data);
-        console.log(gameData.data);
       } catch (error) {
         console.log('error', error);
       }

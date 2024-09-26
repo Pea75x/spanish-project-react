@@ -21,7 +21,10 @@ function Login() {
         await loginUser(user);
         navigate(`/`);
       } catch (error) {
-        if (error.response?.data) {
+        if (
+          error.response?.data &&
+          !error.response.data.includes('<!DOCTYPE html>')
+        ) {
           setErrorMessage(error.response.data);
         } else if (error.message) {
           setErrorMessage(error.message);

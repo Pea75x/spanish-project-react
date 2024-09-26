@@ -1,7 +1,7 @@
 [
   { "code": "me", "value": "Me" },
   { "code": "you", "value": "You" },
-  { "code": "he/he", "value": "He/She" },
+  { "code": "he/she", "value": "He/She" },
   { "code": "we", "value": "We" },
   { "code": "they", "value": "They" },
   { "code": "you_plural", "value": "You (plural)" },
@@ -29,5 +29,5 @@
   { "code": "futuro_compuesto", "value": "Futuro Compuesto" },
   { "code": "condicional_simple", "value": "Condicional Simple" },
   { "code": "indicativo", "value": "Indicativo" },
-  { "code": "condicional_simple", "value": "Subjuntivo" }
+  { "code": "subjuntivo", "value": "Subjuntivo" }
 ]

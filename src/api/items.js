@@ -41,10 +41,10 @@ export const createNewItem = async (model, details) => {
   return data;
 };
 
-export const getItemByName = async (model, searchName) => {
+export const getItemByName = async (model, searchColumn, searchName) => {
   const options = {
     method: 'GET',
-    url: `${baseUrl}/${model}/?${model}=${searchName}`,
+    url: `${baseUrl}/${model}/?${searchColumn}=${searchName}`,
     headers: {
       Accept: 'application/json',
       authorization: `Bearer ${window.sessionStorage.getItem('token')}`

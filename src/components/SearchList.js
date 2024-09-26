@@ -2,11 +2,13 @@ import React from 'react';
 import { getAllItems } from '../api/items';
 import themes from '../data/themes.json';
 import { titleCase } from '../utils/stringUtils';
+import { useNavigate } from 'react-router-dom';
 
 function SearchList({ item, name }) {
   const [list, setList] = React.useState({});
   const [filteredList, setFilteredList] = React.useState({});
   const [searchFilter, setSearchFilter] = React.useState('');
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const getData = async () => {
@@ -31,7 +33,7 @@ function SearchList({ item, name }) {
 
   function handleSearch(event) {
     setSearchFilter(event.target.value);
-    const filteredValues = list.filter((value) =>
+    const filteredValues = filteredList.filter((value) =>
       value[name].toLowerCase().includes(event.target.value.toLowerCase())
     );
     setFilteredList(filteredValues);
@@ -74,7 +76,15 @@ function SearchList({ item, name }) {
             {filteredList.length ? (
               <div>
                 {filteredList.map((value) => (
-                  <div className='m-2 link' key={value.id}>
+                  <div
+                    className='m-2 link'
+                    key={value.id}
+                    onClick={() =>
+                      navigate(`/${item}-show`, {
+                        state: { id: value.id }
+                      })
+                    }
+                  >
                     {value[name]}
                   </div>
                 ))}
