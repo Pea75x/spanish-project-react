@@ -29,13 +29,13 @@ function Word() {
   }, []);
 
   return (
-    <div className='main-container'>
+    <div className='text-center'>
       {word?.word ? (
-        <div className='has-text-centered'>
-          <h1 className='title m-5 is-1'>{titleCase(word.word)}</h1>
-          <h2 className='title is-1 has-text-grey-light'>{word.translation}</h2>
+        <div className='mt-4'>
+          <h1 className='text-5xl font-bold'>{titleCase(word.word)}</h1>
+          <h2 className='text-4xl text-amber-800'>{word.translation}</h2>
           {verbTenses.length && (
-            <div className='is-flex verb-tense-container'>
+            <div className='grid grid-flow-row-dense grid-cols-6 grid-rows-1'>
               {verbTenses.map((tense) => (
                 <VerbTenseCard tense={tense} key={tense.id} />
               ))}

@@ -5,9 +5,11 @@ import { titleCase } from '../utils/stringUtils';
 import { useNavigate } from 'react-router-dom';
 
 function SearchList({ item, name }) {
-  const [list, setList] = React.useState({});
+  const [list, setList] = React.useState([]);
   const [filteredList, setFilteredList] = React.useState({});
   const [searchFilter, setSearchFilter] = React.useState('');
+  const [selectedTheme, setSelectedTheme] = React.useState('');
+
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -23,61 +25,60 @@ function SearchList({ item, name }) {
     getData();
   }, []);
 
-  function chooseTheme(theme) {
-    const filteredValues = list.filter(
-      (value) =>
-        value.themes.includes(theme) && value[name].includes(searchFilter)
-    );
-    setFilteredList(filteredValues);
-  }
+  React.useEffect(() => {
+    let filteredValues = [];
 
-  function handleSearch(event) {
-    setSearchFilter(event.target.value);
-    const filteredValues = filteredList.filter((value) =>
-      value[name].toLowerCase().includes(event.target.value.toLowerCase())
-    );
-    setFilteredList(filteredValues);
-  }
+    filteredValues = list.filter((value) => value[name].includes(searchFilter));
 
-  function reset() {
-    setFilteredList(list.filter((value) => value[name].includes(searchFilter)));
-  }
+    if (selectedTheme.length) {
+      filteredValues = filteredValues.filter((value) =>
+        value.themes.includes(selectedTheme)
+      );
+    }
+
+    setFilteredList(filteredValues);
+  }, [selectedTheme, searchFilter]);
 
   return (
-    <div className='main-container'>
-      <h1 className='title is-1'>{titleCase(item)}</h1>
-      <div className='sub-container'>
-        <div className='categories-box'>
-          <button className='button m-2' onClick={reset}>
+    <div className='flex items-center flex-col h-screen'>
+      <h1 className='text-5xl font-bold w-full my-5 text-center'>
+        {titleCase(item)}
+      </h1>
+      <div className='flex w-11/12 h-fit border rounded-lg'>
+        <div className='w-2/5 grid grid-flow-row-dense grid-cols-4 grid-rows-5 bg-amber-50 h-fit p-2 rounded-lg'>
+          <button
+            className='text-sm h-14 text-center hover:bg-orange-50 text-gray-800 border border-gray-400 rounded-lg shadow m-2'
+            onClick={() => setSelectedTheme('')}
+          >
             All
           </button>
           {themes.map((theme) => (
             <button
               key={theme.code}
-              className='button m-2'
-              onClick={() => chooseTheme(theme.code)}
+              className='text-sm h-14 text-center hover:bg-orange-100 text-gray-800 border border-gray-400 rounded-lg shadow m-2'
+              onClick={() => setSelectedTheme(theme.code)}
             >
               {theme.value}
             </button>
           ))}
         </div>
-        <div className='search-box'>
-          <div className='mx-6 my-5 search-input'>
+        <div className='w-3/5 p-2'>
+          <div className='rounded-md border ml-4 m-2 text-gray-900 ring-1 ring-gray-300'>
             <input
               type='text'
-              onChange={handleSearch}
+              onChange={(event) => setSearchFilter(event.target.value)}
               name='searchFilter'
               value={searchFilter}
               placeholder='search'
-              className='input'
+              className='w-full p-2'
             />
           </div>
-          <div className='words-list mx-6 my-2'>
+          <div className='h-[66vh] overflow-y-auto pl-4'>
             {filteredList.length ? (
               <div>
                 {filteredList.map((value) => (
                   <div
-                    className='m-2 link'
+                    className='p-1 w-1/2'
                     key={value.id}
                     onClick={() =>
                       navigate(`/${item}-show`, {
