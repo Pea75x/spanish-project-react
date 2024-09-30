@@ -1,3 +1,9 @@
 .error-message {
   display: none;
 }
+.player-ranking {
+  position: absolute;
+  left: calc(50% - 7px);
+  top: 95px;
+  font-size: 25px;
+}
