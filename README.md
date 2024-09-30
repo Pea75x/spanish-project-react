@@ -7,3 +7,4 @@ Deployed with netlify - https://spanish-project.netlify.app
 - React 18.2
 - Axios
 - Jest
+- Tailwind CSS

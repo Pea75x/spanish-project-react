@@ -11,8 +11,8 @@ function MainPage() {
   }, [userId]);
 
   return (
-    <div className='main-container'>
-      <img src={logo} alt='logo' className='logo-large mt-6' />
+    <div className='flex items-center flex-col h-screen'>
+      <img src={logo} alt='logo' className='w-60 m-6' />
       {loggedIn ? (
         <ButtonsContainer buttons={['words', 'sentences', 'games']} />
       ) : (
