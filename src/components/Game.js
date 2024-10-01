@@ -20,22 +20,13 @@ function Game() {
     const getData = async () => {
       try {
         const gameData = await getItemById('games', gameId);
-        const allSentences = await getAllItems('sentences');
+        const allSentences = await getAllItems('sentences', {
+          themes: gameData.themes
+        });
         const allWords = await getAllItems('words');
 
-        let themeSentences = [];
-
-        gameData.themes.forEach((theme) =>
-          allSentences.data.forEach(
-            (sentence) =>
-              sentence.themes.includes(theme) &&
-              !themeSentences.includes(sentence) &&
-              themeSentences.push(sentence)
-          )
-        );
-
         setGame(gameData);
-        setSentences(themeSentences);
+        setSentences(allSentences.data);
         setWords(allWords.data);
         setPlayersSentences(new Array(allSentences.data.length).fill([]));
         console.log('game data - ', gameData);
