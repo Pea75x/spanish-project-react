@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { baseUrl } from '../config';
 
-export const getAllItems = async (model) => {
+export const getAllItems = async (model, params) => {
   const options = {
     method: 'GET',
     url: `${baseUrl}/${model}/`,
     headers: {
       Accept: 'application/json',
       authorization: `Bearer ${window.sessionStorage.getItem('token')}`
-    }
+    },
+    params: params
   };
   const { data } = await axios.request(options);
   return data;
