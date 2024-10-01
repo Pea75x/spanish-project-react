@@ -29,7 +29,6 @@ function Game() {
         setSentences(allSentences.data);
         setWords(allWords.data);
         setPlayersSentences(new Array(allSentences.data.length).fill([]));
-        console.log('game data - ', gameData);
       } catch (err) {
         console.log('error', err);
       }
