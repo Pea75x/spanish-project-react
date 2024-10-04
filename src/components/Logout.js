@@ -12,7 +12,7 @@ function Logout() {
   }
 
   return (
-    <button onClick={logout} className='absolute bg-rose-100'>
+    <button onClick={logout} className='absolute right-10 top-5 text-2xl'>
       Logout
     </button>
   );
