@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { baseUrl } from '../config';
+import { setToken, getToken, removeToken } from '../utils/authUtils';
 
 export const loginUser = async (user) => {
   const options = {
@@ -14,7 +15,8 @@ export const loginUser = async (user) => {
     }
   };
   const { data } = await axios.request(options);
-  window.sessionStorage.setItem('token', data.token);
+  setToken(data.token);
+
   return data;
 };
 
@@ -30,11 +32,10 @@ export const createUser = async (user) => {
     }
   };
   const { data } = await axios.request(options);
-  localStorage.setItem('token', data.token);
+  setToken(data.token);
+
   return data;
 };
-
-export const logoutUser = localStorage.removeItem('token');
 
 export const isAdmin = () => {
   const token = sessionStorage.getItem('token');
