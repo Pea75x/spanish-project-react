@@ -47,15 +47,15 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
   }, []);
 
   return (
-    <div className='m-5' ref={containerRef}>
-      <h2 className='title'>{sentence.translation}</h2>
-      <div className='sentences-container'>
+    <div className='m-5 w-9/10' ref={containerRef}>
+      <h2 className='text-xl font-bold m-2'>{sentence.translation}</h2>
+      <div className='flex justify-start'>
         {sentence.words.map((word, wordIndex) => (
-          <div className='sentence-container' key={wordIndex}>
+          <div key={wordIndex} className='m-1'>
             <input
               value={playersAnswer[wordIndex]}
-              className={`answer-input input ${
-                word.correct === false && 'is-danger'
+              className={`rounded-md border-0 p-2 text-gray-900 ring-1 h-7 w-full ${
+                word.correct === false && 'border-2 border-red-500'
               }`}
               onClick={() => onInputClick(wordIndex)}
               type='text'
@@ -64,11 +64,11 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
               ref={(el) => (inputRefs.current[wordIndex] = el)}
             />
             {visibleInputIndex === wordIndex && filteredWords && (
-              <ul className='filtered-list'>
+              <ul className='absolute bg-white h-28 w-full overflow-y-auto'>
                 {filteredWords.length ? (
                   filteredWords.map((word) => (
                     <li
-                      className='selected-word'
+                      className=''
                       key={word.word}
                       onClick={() => onWordClick(word.word, wordIndex)}
                     >

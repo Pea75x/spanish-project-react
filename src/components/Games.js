@@ -21,13 +21,13 @@ function Games() {
   }, []);
 
   return (
-    <div className='main-container'>
-      <img src={logo} alt='logo' className='logo-large mt-6' />
+    <div className='flex items-center flex-col h-screen'>
+      <img src={logo} alt='logo' className='w-60 m-6' />
       {games.length ? (
-        <div>
+        <div className='w-full flex justify-center'>
           {games.map((game) => (
             <button
-              className='button large-button'
+              className='w-1/6 h-14 text-center hover:bg-gray-100 text-gray-800 font-semibold py-4 px-4 border border-gray-400 rounded shadow m-3'
               onClick={() => navigate('/game', { state: { gameId: game.id } })}
             >
               {titleCase(game.name)}

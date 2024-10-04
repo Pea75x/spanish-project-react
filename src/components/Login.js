@@ -45,13 +45,11 @@ function Login() {
   }
 
   return (
-    <div className='p-4 login-container'>
-      <img src={logo} alt='logo' className='logo-small' />
-      <div className='card'>
-        <div className='card-header'>
-          <h1 className='title pl-6 py-4'>Login</h1>
-        </div>
-        <form onSubmit={handleSubmit} className='px-6 py-5'>
+    <div className='flex items-center flex-col h-screen text-gray-700'>
+      <img src={logo} alt='logo' className='w-32 m-6' />
+      <div className='w-1/4 rounded-lg border shadow-lg flex flex-col justify-between px-12 py-5'>
+        <h1 className='text-4xl font-bold w-full mb-3'>Login</h1>
+        <form onSubmit={handleSubmit}>
           <FormInput
             label='Username'
             type='text'
@@ -68,14 +66,25 @@ function Login() {
             name='password'
             value={user.password}
           />
-          <div className='error has-text-danger'>{errorMessage}</div>
-          <button type='submit' className='button'>
+          <div>
+            <div
+              className={`bg-red-100 border border-red-400 text-red-700 px-4 py-2 mt-6 rounded relative ${
+                !errorMessage && 'error-message'
+              }`}
+            >
+              {errorMessage}
+            </div>
+          </div>
+          <button
+            type='submit'
+            className='w-1/3 h-10 text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow mt-4'
+          >
             Login
           </button>
         </form>
-        <p className='has-text-centered pb-3'>
+        <p className='mt-5'>
           Dont have an account?
-          <a className='m-2' href='/sign-up'>
+          <a className='ml-2 font-bold' href='/signup'>
             Sign up
           </a>
         </p>

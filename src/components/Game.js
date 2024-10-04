@@ -20,25 +20,15 @@ function Game() {
     const getData = async () => {
       try {
         const gameData = await getItemById('games', gameId);
-        const allSentences = await getAllItems('sentences');
+        const allSentences = await getAllItems('sentences', {
+          themes: gameData.themes
+        });
         const allWords = await getAllItems('words');
 
-        let themeSentences = [];
-
-        gameData.themes.forEach((theme) =>
-          allSentences.data.forEach(
-            (sentence) =>
-              sentence.themes.includes(theme) &&
-              !themeSentences.includes(sentence) &&
-              themeSentences.push(sentence)
-          )
-        );
-
         setGame(gameData);
-        setSentences(themeSentences);
+        setSentences(allSentences.data);
         setWords(allWords.data);
         setPlayersSentences(new Array(allSentences.data.length).fill([]));
-        console.log('game data - ', gameData);
       } catch (err) {
         console.log('error', err);
       }
@@ -104,7 +94,9 @@ function Game() {
 
   return (
     <div>
-      <h1 className='title is-1 has-text-centered p-4'>{game.name}</h1>
+      <h1 className='text-5xl font-bold text-center py-4 bg-amber-50'>
+        {game.name}
+      </h1>
       {gameOver && <GameOver gameScore={gameScore} game={game} />}
       {sentences ? (
         <div>
@@ -118,7 +110,10 @@ function Game() {
               />
             </div>
           ))}
-          <button className='button m-5' onClick={markAnswers}>
+          <button
+            className='p-2 text-center hover:bg-amber-50 text-gray-800 font-semibold border border-gray-400 rounded shadow ml-5 mb-5'
+            onClick={markAnswers}
+          >
             Submit answers
           </button>
         </div>

@@ -3,34 +3,26 @@ import { titleCase } from '../utils/stringUtils';
 import pronouns from '../data/pronouns.json';
 
 function VerbTenseCard({ tense }) {
-  console.log(tense.sentences);
   return (
-    <div className='card has-text-centered verb-tense-card'>
-      <h1 className='verb-tense-title m-0'>{titleCase(tense.name)}</h1>
-      <div className='py-2 verb-card-content'>
+    <div className='rounded-lg border shadow-lg m-3 flex flex-col justify-between'>
+      <div className='h-20 flex items-center justify-items-center bg-amber-50'>
+        <h1 className='text-xl font-bold w-full'>{titleCase(tense.name)}</h1>
+      </div>
+      <div className='mt-4'>
         {pronouns.map((pronoun) => (
-          <div
-            className='is-flex is-justify-content-space-evenly'
-            key={pronoun}
-          >
-            {!tense?.participle && (
-              <div className='m-1 has-text-weight-bold'>{pronoun}</div>
-            )}
-            <div className='m-1'>{tense[pronoun].word}</div>
+          <div className='flex items-center justify-around m-1' key={pronoun}>
+            {!tense?.participle && <div className='font-bold'>{pronoun}</div>}
+            <div className=''>{tense[pronoun].word}</div>
             {tense?.participle && (
-              <div className='m-1 has-text-weight-bold'>
-                {tense.participle.word}
-              </div>
+              <div className='font-bold'>{tense.participle.word}</div>
             )}
           </div>
         ))}
-        <div className='verb-card-sentence my-1'>
+        <div className='h-20 flex flex-col justify-center mt-4 mx-1'>
           {tense.sentences.length > 0 && (
             <div>
-              <div className='has-text-weight-bold'>
-                {tense.sentences[0].sentence}
-              </div>
-              <div>{tense.sentences[0].translation}</div>
+              <div className='font-bold'>{tense.sentences[0].sentence}</div>
+              <div className='text-sm'>{tense.sentences[0].translation}</div>
             </div>
           )}
         </div>
