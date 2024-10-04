@@ -8,3 +8,4 @@ Deployed with netlify - https://spanish-project.netlify.app
 - Axios
 - Jest
 - Tailwind CSS
+- Redux

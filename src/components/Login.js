@@ -3,8 +3,11 @@ import { loginUser } from '../api/auth';
 import FormInput from './FormInput';
 import logo from '../logo.png';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCurrentUser } from '../store/users/user.action';
 
 function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = React.useState('');
 
@@ -18,7 +21,8 @@ function Login() {
 
     const getData = async () => {
       try {
-        await loginUser(user);
+        let userData = await loginUser(user);
+        dispatch(setCurrentUser(userData));
         navigate(`/`);
       } catch (error) {
         if (
