@@ -4,8 +4,11 @@ import SentenceCard from './SentenceCard';
 import GameOver from './GameOver';
 import { userId } from '../api/auth';
 import { useLocation } from 'react-router-dom';
+import { selectCurrentUser } from '../store/users/user.selector';
+import { useSelector } from 'react-redux';
 
 function Game() {
+  const currentUser = useSelector(selectCurrentUser);
   const { state } = useLocation();
   const { gameId } = state;
   const [sentences, setSentences] = React.useState([]);
@@ -77,7 +80,7 @@ function Game() {
 
     const getScoreData = {
       game_points: score,
-      user_id: userId(),
+      user_id: currentUser.id,
       game_id: game.id
     };
 

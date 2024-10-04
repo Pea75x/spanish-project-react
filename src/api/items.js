@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { baseUrl } from '../config';
+import { getToken } from '../utils/authUtils';
 
 export const getAllItems = async (model, params) => {
   const options = {
@@ -7,7 +8,7 @@ export const getAllItems = async (model, params) => {
     url: `${baseUrl}/${model}/`,
     headers: {
       Accept: 'application/json',
-      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+      authorization: `Bearer ${getToken()}`
     },
     params: params
   };
@@ -21,7 +22,7 @@ export const getItemById = async (model, itemId) => {
     url: `${baseUrl}/${model}/${itemId}`,
     headers: {
       Accept: 'application/json',
-      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+      authorization: `Bearer ${getToken()}`
     }
   };
   const { data } = await axios.request(options);
@@ -35,7 +36,7 @@ export const createNewItem = async (model, details) => {
     data: { [model]: details },
     headers: {
       Accept: 'application/json',
-      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+      authorization: `Bearer ${getToken()}`
     }
   };
   const { data } = await axios.request(options);
@@ -48,7 +49,7 @@ export const getItemByName = async (model, searchColumn, searchName) => {
     url: `${baseUrl}/${model}/?${searchColumn}=${searchName}`,
     headers: {
       Accept: 'application/json',
-      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+      authorization: `Bearer ${getToken()}`
     }
   };
   const { data } = await axios.request(options);
