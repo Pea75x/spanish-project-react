@@ -1,7 +1,5 @@
 # Spanish Project frontend
 
-Deployed with netlify - https://spanish-project.netlify.app
-
 ### Technologies used
 
 - React 18.2
@@ -9,6 +7,7 @@ Deployed with netlify - https://spanish-project.netlify.app
 - Jest
 - Tailwind CSS
 - Redux
+- Deployed with netlify
 
 ### Activity testing past tense sentences
 
@@ -27,3 +26,7 @@ Includes a list of categories and an input box to narrow down your search. When 
 Shows you how to use it with different tenses and pronouns, includes an example sentence at the bottom
 
 <img src="./verbs.png" alt='verb-page' width="600" />
+
+## Netlify link -
+
+https://spanish-project.netlify.app
