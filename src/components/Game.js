@@ -2,7 +2,6 @@ import React from 'react';
 import { getAllItems, createNewItem, getItemById } from '../api/items';
 import SentenceCard from './SentenceCard';
 import GameOver from './GameOver';
-import { userId } from '../api/auth';
 import { useLocation } from 'react-router-dom';
 import { selectCurrentUser } from '../store/users/user.selector';
 import { useSelector } from 'react-redux';
@@ -100,6 +99,10 @@ function Game() {
       <h1 className='text-5xl font-bold text-center py-4 bg-amber-50'>
         {game.name}
       </h1>
+      <p className='text-xl text-center'>
+        Please fill in the boxes below with the spanish tanslation for each
+        sentence
+      </p>
       {gameOver && <GameOver gameScore={gameScore} game={game} />}
       {sentences ? (
         <div>
