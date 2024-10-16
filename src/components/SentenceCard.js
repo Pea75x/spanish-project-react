@@ -54,8 +54,9 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
           <div key={wordIndex} className='m-1'>
             <input
               value={playersAnswer[wordIndex]}
-              className={`rounded-md border-0 p-2 text-gray-900 ring-1 h-7 w-full ${
-                word.correct === false && 'border-2 border-red-500'
+              className={`rounded-md border-0 p-2 text-gray-900 ring-1 ring-amber-500 h-7 w-full ${
+                word.correct === false &&
+                'border-2 border-red-500 bg-red-50 text-red-600'
               }`}
               onClick={() => onInputClick(wordIndex)}
               type='text'

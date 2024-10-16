@@ -27,7 +27,7 @@ function Games() {
         <div className='w-full flex justify-center'>
           {games.map((game) => (
             <button
-              className='w-1/6 h-14 text-center hover:bg-gray-100 text-gray-800 font-semibold py-4 px-4 border border-gray-400 rounded shadow m-3'
+              className='w-1/6 h-14 text-center hover:bg-amber-100 text-gray-800 font-semibold py-4 px-4 border border-gray-400 rounded shadow m-3'
               onClick={() => navigate('/game', { state: { gameId: game.id } })}
             >
               {titleCase(game.name)}
