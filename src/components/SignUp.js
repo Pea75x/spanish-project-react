@@ -47,7 +47,7 @@ function SignUp() {
   return (
     <div className='flex items-center flex-col h-screen text-gray-700'>
       <img src={logo} alt='logo' className='w-32 m-6' />
-      <div className='w-1/4 rounded-lg border shadow-lg flex flex-col justify-between px-12 py-5'>
+      <div className='w-96 rounded-lg border shadow-lg flex flex-col justify-between px-12 py-5'>
         <h1 className='text-4xl font-bold w-full mb-3'>Sign Up</h1>
         <form onSubmit={handleSubmit}>
           <FormInput
