@@ -15,11 +15,12 @@ https://spanish-project.netlify.app
 
 To log in as an admin -
 
-###### Username - admin1
+```
+Username: admin1
+Password: qweqweqwe
+```
 
-###### Password - qweqweqwe
-
-## Activity testing past tense sentences
+## Game Component
 
 I have created a reusable game component, used for each type of game. It takes the games theme (in this case past tense) and makes a request for a random selection of 15 sentences with that theme. It then displays the english translation for you to translate to spanish
 
