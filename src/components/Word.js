@@ -35,7 +35,7 @@ function Word() {
           <h1 className='text-5xl font-bold'>{titleCase(word.word)}</h1>
           <h2 className='text-4xl text-amber-800'>{word.translation}</h2>
           {verbTenses.length && (
-            <div className='grid grid-flow-row-dense grid-cols-6 grid-rows-1'>
+            <div className='flex flex-wrap justify-evenly'>
               {verbTenses.map((tense) => (
                 <VerbTenseCard tense={tense} key={tense.id} />
               ))}
