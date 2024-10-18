@@ -69,7 +69,7 @@ function Login() {
           <div>
             <div
               className={`bg-red-100 border border-red-400 text-red-700 px-4 py-2 mt-6 rounded relative ${
-                !errorMessage && 'error-message'
+                !errorMessage && 'hidden'
               }`}
             >
               {errorMessage}
@@ -77,7 +77,7 @@ function Login() {
           </div>
           <button
             type='submit'
-            className='w-1/3 h-10 text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow mt-4'
+            className='w-1/3 h-10 text-center hover:bg-amber-100 text-gray-800 font-semibold border border-gray-400 rounded shadow mt-4'
           >
             Login
           </button>
