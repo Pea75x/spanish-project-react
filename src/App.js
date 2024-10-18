@@ -8,6 +8,7 @@ import Words from './components/Words';
 import Sentences from './components/Sentences';
 import Games from './components/Games';
 import Word from './components/Word';
+import Create from './components/Create';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/words-show' element={<Word />} />
         <Route path='/sentences' element={<Sentences />} />
         <Route path='/games' element={<Games />} />
+        <Route path='/create' element={<Create />} />
       </Routes>
     </BrowserRouter>
   );

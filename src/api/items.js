@@ -32,7 +32,7 @@ export const getItemById = async (model, itemId) => {
 export const createNewItem = async (model, details) => {
   const options = {
     method: 'POST',
-    url: `${baseUrl}/${model}/`,
+    url: `${baseUrl}/${model}s/`,
     data: { [model]: details },
     headers: {
       Accept: 'application/json',
