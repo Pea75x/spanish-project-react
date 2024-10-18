@@ -26,16 +26,18 @@ function Create() {
   const [message, setMessage] = React.useState('');
 
   React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const allWords = await getAllItems('words');
-        setWords(allWords.data);
-      } catch (error) {
-        console.log('error', error);
-      }
-    };
     getData();
   }, []);
+
+  const getData = async () => {
+    try {
+      const allWords = await getAllItems('words');
+      setWords(allWords.data);
+      console.log('all words', allWords.data);
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
 
   function handleChange(event, item, setItem) {
     setItem({ ...item, [event.target.name]: event.target.value });
@@ -48,9 +50,10 @@ function Create() {
   function createItem(event, itemName, itemData) {
     event.preventDefault();
 
-    const getData = async () => {
+    const createData = async () => {
       try {
         await createNewItem(itemName, itemData);
+        await getData();
         setMessage(`Successfully created ${itemName}`);
         setNewWord(emptyWord);
         setNewSentence(emptySentence);
@@ -60,7 +63,7 @@ function Create() {
           : setMessage(error.response.data);
       }
     };
-    getData();
+    createData();
   }
 
   React.useEffect(() => {
