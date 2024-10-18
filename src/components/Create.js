@@ -1,6 +1,6 @@
 import React from 'react';
 import FormInput from './FormInput';
-import { getAllItems } from '../api/items';
+import { getAllItems, createNewItem } from '../api/items';
 import themes from '../data/themes.json';
 import SearchableInput from './SearchableInput';
 
@@ -35,12 +35,24 @@ function Create() {
 
   function handleChange(event, item, setItem) {
     setItem({ ...item, [event.target.name]: event.target.value });
-    console.log('word:', newWord);
   }
 
   function toggleCheckbox(value, item, setItem) {
     setItem({ ...item, typeVerb: value });
-    console.log('word:', newWord);
+  }
+
+  function createItem(event, itemName, itemData) {
+    event.preventDefault();
+
+    const getData = async () => {
+      try {
+        const createdWords = await createNewItem(itemName, itemData);
+        console.log('response: ', createdWords);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+    getData();
   }
 
   return (
@@ -50,7 +62,7 @@ function Create() {
         <div className='w-full border flex flex-col items-center py-5'>
           <h2 className='text-4xl'>Words</h2>
           <div className='w-3/4'>
-            <form onSubmit={() => console.log('hello')}>
+            <form onSubmit={(e) => createItem(e, 'word', newWord)}>
               <FormInput
                 label='Word'
                 type='text'
@@ -88,7 +100,7 @@ function Create() {
               <SearchableInput
                 searchList={themes}
                 value='value'
-                name='theme'
+                name='themes'
                 setNewItem={setNewWord}
                 newItem={newWord}
               />
