@@ -9,10 +9,12 @@ import Sentences from './components/Sentences';
 import Games from './components/Games';
 import Word from './components/Word';
 import Create from './components/Create';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<Login />} />
