@@ -9,12 +9,18 @@ function MainPage() {
   const currentUser = useSelector(selectCurrentUser);
 
   return (
-    <div className='flex items-center flex-col h-screen'>
-      <img src={logo} alt='logo' className='w-60 m-6' />
+    <div>
       {currentUser ? (
-        <ButtonsContainer buttons={['words', 'sentences', 'games']} />
+        <div className='flex items-center justify-center h-screen'>
+          <ButtonsContainer buttons={['words', 'sentences']} column />
+          <img src={logo} alt='logo' className='w-60 m-6' />
+          <ButtonsContainer buttons={['games']} column />
+        </div>
       ) : (
-        <ButtonsContainer buttons={['login', 'signup']} />
+        <div className='flex items-center flex-col h-screen'>
+          <img src={logo} alt='logo' className='w-60 m-6' />
+          <ButtonsContainer buttons={['login', 'signup']} />
+        </div>
       )}
       {currentUser && <Logout />}
     </div>
