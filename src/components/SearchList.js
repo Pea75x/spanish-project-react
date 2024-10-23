@@ -3,6 +3,7 @@ import { getAllItems } from '../api/items';
 import themes from '../data/themes.json';
 import { titleCase } from '../utils/stringUtils';
 import { useNavigate } from 'react-router-dom';
+import BaseSwitch from './BaseSwitch';
 
 function SearchList() {
   const [words, setWords] = React.useState([]);
@@ -11,6 +12,7 @@ function SearchList() {
   const [searchFilter, setSearchFilter] = React.useState('');
   const [selectedTheme, setSelectedTheme] = React.useState('');
   const [selectedTab, setSelectedTab] = React.useState('word');
+  const [language, setLanguage] = React.useState('spanish');
 
   const navigate = useNavigate();
 
@@ -69,7 +71,7 @@ function SearchList() {
             {themes.map((theme) => (
               <button
                 key={theme.code}
-                className={`text-sm h-14 text-center hover:bg-orange-100 text-gray-800 border border-gray-400 rounded-lg shadow m-2 title ${
+                className={`text-xs h-14 text-center hover:bg-orange-100 text-gray-800 border border-gray-400 rounded-lg shadow m-2 title ${
                   selectedTheme === theme.code && 'bg-orange-100 border-2'
                 }`}
                 onClick={() => setSelectedTheme(theme.code)}
@@ -101,7 +103,8 @@ function SearchList() {
           </div>
           <div className='w-full mt-2'>
             <div className='flex'>
-              <div className='rounded-md border ml-4 m-2 text-gray-900 ring-1 ring-gray-300 w-10/12'>
+              <div className='rounded-md border ml-4 m-2 text-gray-900 ring-1 ring-gray-300 w-7/12 md:w-9/12 flex'>
+                <i class='fa-solid fa-magnifying-glass p-3'></i>
                 <input
                   type='text'
                   onChange={(event) => setSearchFilter(event.target.value)}
@@ -111,12 +114,7 @@ function SearchList() {
                   className='w-full p-2'
                 />
               </div>
-              <div className='m-2 text-sm flex'>
-                <span className='border rounded-l-full h-full'>english</span>
-                <span className='border rounded-r-full bg-rose-50 h-full'>
-                  spanish
-                </span>
-              </div>
+              <BaseSwitch optionA='english' optionB='spanish' />
             </div>
             <div className='h-[60vh] overflow-y-auto pl-4'>
               {filteredList.length ? (

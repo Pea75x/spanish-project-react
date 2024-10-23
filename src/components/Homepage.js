@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import logo from '../logo.png';
-import ButtonsContainer from './ButtonsContainer';
+import BaseButton from './BaseButton';
 import { getAllItems } from '../api/items';
 import { selectCurrentUser } from '../store/users/user.selector';
 
@@ -26,12 +26,12 @@ function Homepage() {
       {currentUser ? (
         <div className='md:flex md:flex-row grid grid-cols-2 content-start h-screen items-center lg:w-10/12 mx-auto mt-5 md:mt-0'>
           <div className='w-full flex justify-center items-center flex-col ml-6'>
-            <ButtonsContainer
+            <BaseButton
               button='total score'
               column
               input={currentUser.total_score}
             />
-            <ButtonsContainer
+            <BaseButton
               button='mistakes'
               column
               input='0'
@@ -43,15 +43,15 @@ function Homepage() {
             <h1 className='text-3xl font-bold'>{currentUser.username}</h1>
           </div>
           <div className='w-full flex justify-center items-center flex-col col-span-2'>
-            <ButtonsContainer button='search' column link='search' />
-            <ButtonsContainer button='games' column subHeadings={games} />
+            <BaseButton button='search' column link='search' />
+            <BaseButton button='games' column subHeadings={games} />
           </div>
         </div>
       ) : (
         <div className='flex items-center flex-col h-screen'>
           <img src={logo} alt='logo' className='w-60 m-6' />
-          <ButtonsContainer button='login' link='login' />
-          <ButtonsContainer button='signup' link='signup' />
+          <BaseButton button='login' link='login' />
+          <BaseButton button='signup' link='signup' />
         </div>
       )}
     </div>

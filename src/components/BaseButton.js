@@ -3,13 +3,7 @@ import { Link } from 'react-router-dom';
 import { titleCase } from '../utils/stringUtils';
 import { useNavigate } from 'react-router-dom';
 
-function ButtonsContainer({
-  button,
-  link = '',
-  column = false,
-  input,
-  subHeadings
-}) {
+function BaseButton({ button, link = '', column = false, input, subHeadings }) {
   const navigate = useNavigate();
 
   return (
@@ -54,4 +48,4 @@ function ButtonsContainer({
   );
 }
 
-export default ButtonsContainer;
+export default BaseButton;
