@@ -21,14 +21,14 @@ function ButtonsContainer({
       }`}
     >
       <Link
-        className='h-20 flex items-center text-center text-gray-800 font-semibold text-2xl'
+        className='h-16 flex items-center text-center text-gray-800 font-semibold text-2xl'
         to={`/${link}`}
       >
         <div className='w-full text-center text-gray-800 font-semibold text-2xl'>
           {titleCase(button)}
         </div>
         {input && (
-          <span className='py-2 px-6 m-2 rounded-lg border lg:text-5xl md:text-4xl text-3xl'>
+          <span className='py-1 m-2 w-28 rounded-lg border md:text-4xl text-3xl'>
             {input}
           </span>
         )}

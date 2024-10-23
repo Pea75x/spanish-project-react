@@ -31,7 +31,12 @@ function Homepage() {
               column
               input={currentUser.total_score}
             />
-            <ButtonsContainer button='mistakes' column link='mistakes' />
+            <ButtonsContainer
+              button='mistakes'
+              column
+              input='0'
+              link={0 === 9 ? 'mistakes' : ''}
+            />
           </div>
           <div className='w-full text-center lg:mt-6'>
             <img src={logo} alt='logo' className='md:w-60 w-40 my-6 mx-auto' />
