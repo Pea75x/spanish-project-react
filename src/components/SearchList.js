@@ -1,7 +1,6 @@
 import React from 'react';
 import { getAllItems } from '../api/items';
 import themes from '../data/themes.json';
-import { titleCase } from '../utils/stringUtils';
 import { useNavigate } from 'react-router-dom';
 import BaseSwitch from './BaseSwitch';
 
@@ -32,13 +31,13 @@ function SearchList() {
   }, []);
 
   React.useEffect(() => {
-    console.log('seelc', selectedTheme);
     let filteredValues = [];
 
     let list = selectedTab === 'word' ? words : sentences;
+    let searchColumn = language === 'spanish' ? selectedTab : 'translation';
 
     filteredValues = list.filter((value) =>
-      value[selectedTab].toLowerCase().includes(searchFilter.toLowerCase())
+      value[searchColumn].toLowerCase().includes(searchFilter.toLowerCase())
     );
 
     if (selectedTheme.length) {
@@ -49,10 +48,6 @@ function SearchList() {
 
     setFilteredList(filteredValues);
   }, [selectedTheme, searchFilter, selectedTab]);
-
-  function changeTab(item) {
-    setSelectedTab(item);
-  }
 
   return (
     <div className='flex items-center flex-col h-screen'>
@@ -85,7 +80,7 @@ function SearchList() {
         <div className='md:w-3/5 w-2/3'>
           <div className='flex w-full justify-around text-center'>
             <div
-              onClick={() => changeTab('word')}
+              onClick={() => setSelectedTab('word')}
               className={`w-full py-2 border-r ${
                 selectedTab === 'sentence' && 'border-b bg-gray-50'
               }`}
@@ -93,7 +88,7 @@ function SearchList() {
               Words
             </div>
             <div
-              onClick={() => changeTab('sentence')}
+              onClick={() => setSelectedTab('sentence')}
               className={`w-full py-2 ${
                 selectedTab === 'word' && 'border-b bg-gray-50'
               }`}
@@ -104,24 +99,32 @@ function SearchList() {
           <div className='w-full mt-2'>
             <div className='flex'>
               <div className='rounded-md border ml-4 m-2 text-gray-900 ring-1 ring-gray-300 w-7/12 md:w-9/12 flex'>
-                <i class='fa-solid fa-magnifying-glass p-3'></i>
+                <i
+                  class='fa-solid fa-magnifying-glass m-3'
+                  style={{ color: '#c4c4c4' }}
+                />
                 <input
                   type='text'
                   onChange={(event) => setSearchFilter(event.target.value)}
                   name='searchFilter'
                   value={searchFilter}
-                  placeholder='search'
+                  placeholder='Search'
                   className='w-full p-2'
                 />
               </div>
-              <BaseSwitch optionA='english' optionB='spanish' />
+              <BaseSwitch
+                optionA='english'
+                optionB='spanish'
+                currentOption={language}
+                handleClick={setLanguage}
+              />
             </div>
             <div className='h-[60vh] overflow-y-auto pl-4'>
               {filteredList.length ? (
                 <div>
                   {filteredList.map((value) => (
                     <div
-                      className='p-1 w-1/2'
+                      className='p-1'
                       key={value.id}
                       onClick={() =>
                         navigate(`/${selectedTab}-show`, {
@@ -129,7 +132,11 @@ function SearchList() {
                         })
                       }
                     >
-                      {value[selectedTab]}
+                      {
+                        value[
+                          language === 'spanish' ? selectedTab : 'translation'
+                        ]
+                      }
                     </div>
                   ))}
                 </div>
