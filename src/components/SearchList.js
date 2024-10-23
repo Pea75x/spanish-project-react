@@ -30,6 +30,7 @@ function SearchList() {
   }, []);
 
   React.useEffect(() => {
+    console.log('seelc', selectedTheme);
     let filteredValues = [];
 
     let list = selectedTab === 'word' ? words : sentences;
@@ -58,7 +59,9 @@ function SearchList() {
         <div className='relative h-[77vh] overflow-y-auto md:w-2/5 w-1/3'>
           <div className='grid grid-flow-row-dense lg:grid-cols-4 md:grid-cols-2 grid-cols-1 bg-amber-50 h-fit p-2 rounded-l-lg'>
             <button
-              className='text-sm h-14 text-center hover:bg-orange-50 text-gray-800 border border-gray-400 rounded-lg shadow m-2 title'
+              className={`text-sm h-14 text-center hover:bg-orange-100 text-gray-800 border border-gray-400 rounded-lg shadow m-2 title ${
+                selectedTheme === '' && 'bg-orange-100 border-2'
+              }`}
               onClick={() => setSelectedTheme('')}
             >
               All
@@ -66,7 +69,9 @@ function SearchList() {
             {themes.map((theme) => (
               <button
                 key={theme.code}
-                className='text-sm h-14 text-center hover:bg-orange-100 text-gray-800 border border-gray-400 rounded-lg shadow m-2 title'
+                className={`text-sm h-14 text-center hover:bg-orange-100 text-gray-800 border border-gray-400 rounded-lg shadow m-2 title ${
+                  selectedTheme === theme.code && 'bg-orange-100 border-2'
+                }`}
                 onClick={() => setSelectedTheme(theme.code)}
               >
                 {theme.value}
