@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
 import Game from './components/Game';
-import MainPage from './components/MainPage';
+import Homepage from './components/Homepage';
 import SignUp from './components/SignUp';
 import Words from './components/Words';
 import Sentences from './components/Sentences';
@@ -14,7 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<MainPage />} />
+        <Route path='/' element={<Homepage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/game' element={<Game />} />
         <Route path='/signup' element={<SignUp />} />
