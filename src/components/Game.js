@@ -96,16 +96,14 @@ function Game() {
 
   return (
     <div>
-      <h1 className='text-5xl font-bold text-center py-4 bg-amber-50'>
-        {game.name}
-      </h1>
+      <h1 className='text-5xl font-bold text-center py-4'>{game.name}</h1>
       <p className='text-xl text-center'>
         Please fill in the boxes below with the spanish tanslation for each
         sentence
       </p>
       {gameOver && <GameOver gameScore={gameScore} game={game} />}
       {sentences ? (
-        <div>
+        <div className='flex flex-col items-center bg-amber-50 w-11/12 mx-auto rounded-lg shadow-lg my-4'>
           {sentences.map((sentence, index) => (
             <div key={sentence.id}>
               <SentenceCard
@@ -117,7 +115,7 @@ function Game() {
             </div>
           ))}
           <button
-            className='p-2 text-center hover:bg-amber-50 text-gray-800 font-semibold border border-gray-400 rounded shadow ml-5 mb-5'
+            className='p-2 text-center hover:bg-amber-600 hover:text-white hover:border-amber-600 font-semibold border border-black rounded shadow ml-5 mb-5'
             onClick={markAnswers}
           >
             Submit answers

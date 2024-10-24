@@ -1,7 +1,7 @@
 import React from 'react';
 import { titleCase } from '../utils/stringUtils';
 
-function BaseSwitch({ optionA, optionB, handleClick, currentOption }) {
+function BaseSwitch({ optionA, optionB, handleClick, currentOption = '' }) {
   return (
     <div className='w-2/12 min-w-32 flex flex-col mx-2 text-center'>
       <div className='w-full rounded bg-white h-auto m-auto shadow flex flex-col rounded-xl'>

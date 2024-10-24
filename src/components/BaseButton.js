@@ -33,6 +33,7 @@ function BaseButton({ button, link = '', column = false, input, subHeadings }) {
             {subHeadings.length &&
               subHeadings.map((heading) => (
                 <div
+                  key={heading.name}
                   onClick={() =>
                     navigate(`/${button}`, { state: { gameId: heading.id } })
                   }

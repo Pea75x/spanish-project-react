@@ -18,7 +18,7 @@ function Homepage() {
         console.log('error', error);
       }
     };
-    getData();
+    currentUser && getData();
   }, []);
 
   return (
@@ -50,8 +50,10 @@ function Homepage() {
       ) : (
         <div className='flex items-center flex-col h-screen'>
           <img src={logo} alt='logo' className='w-60 m-6' />
-          <BaseButton button='login' link='login' />
-          <BaseButton button='signup' link='signup' />
+          <div className='flex w-full justify-center lg:flex-row flex-col items-center'>
+            <BaseButton button='login' link='login' />
+            <BaseButton button='signup' link='signup' />
+          </div>
         </div>
       )}
     </div>
