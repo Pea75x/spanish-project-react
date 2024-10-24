@@ -17,6 +17,7 @@ function Game() {
   const [gameOver, setGameOver] = React.useState(false);
   const [game, setGame] = React.useState({});
   const [gameScore, setGameScore] = React.useState({});
+  const [message, setMessage] = React.useState('');
 
   React.useEffect(() => {
     const getData = async () => {
@@ -75,8 +76,6 @@ function Game() {
   }
 
   function endGame(score) {
-    setGameOver(true);
-
     const getScoreData = {
       game_points: score,
       user_id: currentUser.id,
@@ -85,9 +84,11 @@ function Game() {
 
     const createGameScore = async () => {
       try {
-        const getGameScore = await createNewItem('game_scores', getScoreData);
+        const getGameScore = await createNewItem('game_score', getScoreData);
         setGameScore(getGameScore);
+        setGameOver(true);
       } catch (error) {
+        setMessage('Error saving game');
         console.log(error);
       }
     };
@@ -101,6 +102,13 @@ function Game() {
         Please fill in the boxes below with the spanish tanslation for each
         sentence
       </p>
+      {message && (
+        <div className='absolute w-full flex'>
+          <div className='p-2 rounded-full mx-auto bg-amber-600 text-amber-50 font-bold inline-block'>
+            {message}
+          </div>
+        </div>
+      )}
       {gameOver && <GameOver gameScore={gameScore} game={game} />}
       {sentences ? (
         <div className='flex flex-col items-center bg-amber-50 w-11/12 mx-auto rounded-lg shadow-lg my-4'>

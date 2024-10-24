@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 function GameOver({ gameScore, game }) {
   const navigate = useNavigate();
   return (
-    <div className='absolute flex items-center flex-col w-full mt-4'>
-      <div className='bg-white w-1/3 border border-gray-400 rounded-lg shadow text-center'>
+    <div className='absolute flex items-center flex-col w-full mt-4 z-20'>
+      <div className='bg-white md:w-1/3 min-w-80 border border-gray-400 rounded-lg shadow text-center'>
         <div className=''>
           <h1 className='pt-4 text-3xl font-bold'>GAME OVER</h1>
           <h2 className='text-2xl'>{gameScore.game_points} points</h2>
