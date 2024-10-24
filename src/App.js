@@ -7,10 +7,12 @@ import SignUp from './components/SignUp';
 import SearchList from './components/SearchList';
 import Word from './components/Word';
 import Create from './components/Create';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/login' element={<Login />} />

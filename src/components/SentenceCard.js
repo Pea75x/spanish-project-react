@@ -47,14 +47,16 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
   }, []);
 
   return (
-    <div className='m-5 w-9/10' ref={containerRef}>
-      <h2 className='text-xl font-bold m-2'>{sentence.translation}</h2>
+    <div className='py-3' ref={containerRef}>
+      <h2 className='text-xl font-bold m-2 text-center border-b border-black'>
+        {sentence.translation}
+      </h2>
       <div className='flex justify-start'>
         {sentence.words.map((word, wordIndex) => (
-          <div key={wordIndex} className='m-1'>
+          <div key={wordIndex} className='m-1 relative'>
             <input
               value={playersAnswer[wordIndex]}
-              className={`rounded-md border-0 p-2 text-gray-900 ring-1 ring-amber-500 h-7 w-full ${
+              className={`rounded-md border-0 p-2 text-gray-900 ring-1 ring-black h-7 w-full ${
                 word.correct === false &&
                 'border-2 border-red-500 bg-red-50 text-red-600'
               }`}
@@ -65,7 +67,7 @@ function SentenceCard({ sentence, getAnswers, words, sentenceIndex }) {
               ref={(el) => (inputRefs.current[wordIndex] = el)}
             />
             {visibleInputIndex === wordIndex && filteredWords && (
-              <ul className='absolute bg-white h-28 w-full overflow-y-auto'>
+              <ul className='absolute bg-white max-h-28 w-full overflow-y-auto z-10 border rounded-b'>
                 {filteredWords.length ? (
                   filteredWords.map((word) => (
                     <li
