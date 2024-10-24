@@ -33,7 +33,6 @@ function Create() {
     try {
       const allWords = await getAllItems('words');
       setWords(allWords.data);
-      console.log('all words', allWords.data);
     } catch (error) {
       console.log('error', error);
     }
@@ -87,7 +86,7 @@ function Create() {
         </div>
       )}
       <div className='flex lg:flex-row flex-col lg:items-start justify-around items-center lg:w-11/12 w-full mx-auto'>
-        <div className='m-8 w-96 rounded-lg flex border flex-col items-center'>
+        <div className='m-8 w-96 rounded-lg flex border flex-col items-center shadow-lg'>
           <h2 className='text-4xl bg-amber-50 border-b rounded-t-lg w-full py-2'>
             Words
           </h2>
@@ -164,7 +163,7 @@ function Create() {
             </form>
           </div>
         </div>
-        <div className='m-8 w-96 rounded-lg border flex flex-col items-center'>
+        <div className='m-8 w-96 rounded-lg border flex flex-col items-center shadow-lg'>
           <h2 className='text-4xl bg-amber-50 border-b rounded-t-lg w-full py-2'>
             Sentences
           </h2>
@@ -181,6 +180,7 @@ function Create() {
                   }
                   name='sentence'
                   value={newSentence.sentence}
+                  multiline
                 />
               </div>
               <div className='w-3/4 mx-auto'>
@@ -194,6 +194,7 @@ function Create() {
                   }
                   name='translation'
                   value={newSentence.translation}
+                  multiline
                 />
               </div>
 
