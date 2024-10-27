@@ -8,6 +8,7 @@ import SearchList from './components/SearchList';
 import Word from './components/Word';
 import Create from './components/Create';
 import Navbar from './components/Navbar';
+import Sentence from './components/Sentence';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/search' element={<SearchList />} />
         <Route path='/word-show' element={<Word />} />
+        <Route path='/sentence-show' element={<Sentence />} />
         <Route path='/create' element={<Create />} />
       </Routes>
     </BrowserRouter>
