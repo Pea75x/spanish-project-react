@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { titleCase } from '../utils/stringUtils';
 import { getItemById } from '../api/items';
 import { useNavigate } from 'react-router-dom';
+import { removeSnakeCase } from '../utils/stringUtils';
 
 function Sentence() {
   const { state } = useLocation();
@@ -41,7 +42,7 @@ function Sentence() {
               <div className='flex m-2 flex-wrap justify-center'>
                 {sentence.themes.map((theme) => (
                   <div className='rounded-full bg-amber-50 border border-amber-600 text-amber-600 m-1 px-3'>
-                    {theme}
+                    {removeSnakeCase(theme)}
                   </div>
                 ))}
               </div>
@@ -62,6 +63,18 @@ function Sentence() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+          <div className='relative'>
+            <div
+              className='absolute right-10 m-4 flex flex-col'
+              onClick={() => navigate(`/search`)}
+            >
+              <i
+                className='fa-solid fa-circle-left text-4xl'
+                style={{ color: '#d97706' }}
+              />
+              <span className='text-amber-600 font-bold'>Back</span>
             </div>
           </div>
         </div>

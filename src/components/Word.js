@@ -4,6 +4,7 @@ import { getItemByName, getItemById } from '../api/items';
 import { titleCase } from '../utils/stringUtils';
 import VerbTenseCard from './VerbTenseCard';
 import WordCard from './WordCard';
+import { useNavigate } from 'react-router-dom';
 
 function Word() {
   const { state } = useLocation();
@@ -11,6 +12,7 @@ function Word() {
   const [wordId, setWordId] = React.useState(id);
   const [word, setWord] = React.useState({});
   const [verbTenses, setVerbTenses] = React.useState({});
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const getData = async () => {
@@ -39,7 +41,7 @@ function Word() {
         <div className='mt-4'>
           <h1 className='text-5xl font-bold'>{titleCase(word.word)}</h1>
           <h2 className='text-4xl text-amber-800'>{word.translation}</h2>
-          <div className=''>
+          <div>
             {verbTenses.length && (
               <div className='flex flex-wrap justify-evenly'>
                 {verbTenses.map((tense) => (
@@ -50,6 +52,18 @@ function Word() {
             {!word.type_verb && (
               <WordCard word={word} handleClick={setWordId} />
             )}
+          </div>
+          <div className='relative'>
+            <div
+              className='absolute right-10 flex flex-col'
+              onClick={() => navigate(`/search`)}
+            >
+              <i
+                className='fa-solid fa-circle-left text-4xl'
+                style={{ color: '#d97706' }}
+              />
+              <span className='text-amber-600 font-bold'>Back</span>
+            </div>
           </div>
         </div>
       ) : (
