@@ -1,14 +1,43 @@
 import { render, screen } from '@testing-library/react';
 import FormInput from './FormInput';
 
-test('renders the input element', () => {
+// Multiline prop
+test('renders an input element by default', () => {
   render(<FormInput />);
   const inputElement = screen.getByRole('textbox');
+  expect(inputElement.tagName).toBe('INPUT');
   expect(inputElement).toBeInTheDocument();
 });
 
+test('renders a textarea element when multiline is true', () => {
+  render(<FormInput multiline />);
+  const textareaElement = screen.getByRole('textbox');
+  expect(textareaElement.tagName).toBe('TEXTAREA');
+  expect(textareaElement).toBeInTheDocument();
+});
+
+// Inline prop
+test('applies inline styles when inline is true', () => {
+  render(<FormInput label='Username' inline />);
+  const container = screen.getByTestId('label-container');
+  const labelElement = screen.getByTestId('label');
+
+  expect(container).toHaveClass('grid grid-cols-3 my-4');
+  expect(labelElement).toHaveClass('col-span-1 text-right mx-4 my-auto');
+});
+
+test('applies default styles when inline is false', () => {
+  render(<FormInput label='Username' />);
+  const container = screen.getByTestId('label-container');
+  const labelElement = screen.getByTestId('label');
+
+  expect(container).toHaveClass('my-2');
+  expect(labelElement).not.toHaveClass('col-span-1 text-right mx-4 my-auto');
+});
+
+// Label prop
 test('renders label when provided', () => {
-  render(<FormInput label='Username' onChange={console.log('hello')} />);
+  render(<FormInput label='Username' />);
   const labelElement = screen.getByText('Username');
   expect(labelElement).toBeInTheDocument();
 });
@@ -19,6 +48,7 @@ test('does not render label when none provided', () => {
   expect(labelElement).not.toBeInTheDocument();
 });
 
+// ...otherProps
 test('passes props to input element', () => {
   render(
     <FormInput
@@ -30,19 +60,4 @@ test('passes props to input element', () => {
   );
   const inputElement = screen.getByTestId('input');
   expect(inputElement.value).toBe('test-value');
-});
-
-test('applies the correct class names', () => {
-  render(
-    <FormInput
-      label='Username'
-      value='test value'
-      onChange={console.log('hello')}
-    />
-  );
-
-  const inputElement = screen.getByTestId('input');
-  const labelElement = screen.getByTestId('label');
-  expect(inputElement).toHaveClass('input');
-  expect(labelElement).toHaveClass('form-input-label');
 });
