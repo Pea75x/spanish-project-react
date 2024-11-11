@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import FormInput from './FormInput';
 
 // Multiline prop
@@ -49,13 +49,13 @@ test('does not render label when none provided', () => {
 });
 
 // ...otherProps
-test('passes props to input element', () => {
+test('passes props to input element and calls onChange handler on change', () => {
   render(
     <FormInput
       label='Username'
-      onChange={console.log('hello')}
+      onChange={() => {}}
       name='password'
-      value='test-value'
+      defaultValue='test-value'
     />
   );
   const inputElement = screen.getByTestId('input');

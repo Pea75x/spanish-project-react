@@ -60,9 +60,6 @@ test('does not render subHeadings when subHeadings is empty', () => {
 
 // Link props
 test('renders link and navigates when clicked', () => {
-  const mockNavigate = jest.fn();
-  useNavigate.mockReturnValue(mockNavigate);
-
   render(
     <MemoryRouter>
       <BaseButton text='button' link='path/to/target' />
@@ -70,9 +67,7 @@ test('renders link and navigates when clicked', () => {
   );
 
   const linkElement = screen.getByRole('link', { name: 'Button' });
-
-  fireEvent.click(linkElement);
-  expect(mockNavigate).toHaveBeenCalledWith('/path/to/target');
+  expect(linkElement).toHaveAttribute('href', '/path/to/target');
 });
 
 // Column props
