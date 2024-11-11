@@ -11,17 +11,18 @@ function BaseSwitch({ optionA, optionB, handleClick, currentOption = '' }) {
               onClick={() => handleClick(optionA)}
               className='w-full flex justify-center text-gray-400 cursor-pointer'
             >
-              English
+              {titleCase(optionA)}
             </div>
             <div
               onClick={() => handleClick(optionB)}
               className='w-full flex justify-center text-gray-400 cursor-pointer'
             >
-              Spanish
+              {titleCase(optionB)}
             </div>
           </div>
 
           <span
+            data-testid='current-option'
             className={`${
               currentOption === optionA ? 'left-1' : 'left-1/2 -ml-1'
             } bg-white shadow text-sm flex items-center justify-center w-1/2 rounded h-[1.88rem] transition-all duration-150 ease-linear top-[4px] absolute`}

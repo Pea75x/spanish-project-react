@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { titleCase } from '../utils/stringUtils';
 import { useNavigate } from 'react-router-dom';
 
-function BaseButton({ button, link = '', column = false, input, subHeadings }) {
+function BaseButton({ text, link = '', column = false, input, subHeadings }) {
   const navigate = useNavigate();
 
   return (
     <div
+      data-testid='button-container'
       className={` ${
         column ? 'w-10/12 bg:w-7/12' : 'lg:w-1/6 w-1/2'
       } border border-gray-400 shadow m-3 rounded ${
@@ -19,7 +20,7 @@ function BaseButton({ button, link = '', column = false, input, subHeadings }) {
         to={`/${link}`}
       >
         <div className='w-full text-center text-gray-800 font-semibold text-2xl'>
-          {titleCase(button)}
+          {titleCase(text)}
         </div>
         {input && (
           <span className='py-1 m-2 w-28 rounded-lg border md:text-4xl text-3xl'>
@@ -35,7 +36,7 @@ function BaseButton({ button, link = '', column = false, input, subHeadings }) {
                 <div
                   key={heading.name}
                   onClick={() =>
-                    navigate(`/${button}`, { state: { gameId: heading.id } })
+                    navigate(`/${text}`, { state: { gameId: heading.id } })
                   }
                   className='h-12 flex items-center w-full justify-center hover:bg-amber-50'
                 >
