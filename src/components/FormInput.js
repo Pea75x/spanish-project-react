@@ -9,9 +9,15 @@ function FormInput({
   const Component = multiline ? 'textarea' : 'input';
 
   return (
-    <div className={inline ? 'grid grid-cols-3 my-4' : 'my-2'}>
-      <div className={inline ? 'col-span-1 text-right mx-4 my-auto' : 'my-2'}>
-        {label && <label data-testid='label'>{label}</label>}
+    <div
+      data-testid='label-container'
+      className={inline ? 'grid grid-cols-3 my-4' : 'my-2'}
+    >
+      <div
+        data-testid='label'
+        className={inline ? 'col-span-1 text-right mx-4 my-auto' : 'my-2'}
+      >
+        {label && <label>{label}</label>}
       </div>
       {React.createElement(Component, {
         className:

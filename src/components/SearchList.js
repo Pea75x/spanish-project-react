@@ -155,7 +155,7 @@ function SearchList() {
       ) : (
         <div className='flex items-center flex-col'>
           <div>Please Log in to use the search function</div>
-          <BaseButton button='login' link='login' />
+          <BaseButton text='login' link='login' />
         </div>
       )}
     </div>

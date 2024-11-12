@@ -241,7 +241,7 @@ function Create() {
       ) : (
         <div className='flex items-center flex-col'>
           <div>Please Log in as an admin to use the create function</div>
-          <BaseButton button='login' link='login' />
+          <BaseButton text='login' link='login' />
         </div>
       )}
     </div>

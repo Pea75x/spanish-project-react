@@ -27,12 +27,12 @@ function Homepage() {
         <div className='md:flex md:flex-row grid grid-cols-2 content-start h-screen items-center lg:w-10/12 mx-auto mt-5 md:mt-0'>
           <div className='w-full flex justify-center items-center flex-col ml-6'>
             <BaseButton
-              button='total score'
+              text='total score'
               column
               input={currentUser.total_score}
             />
             <BaseButton
-              button='mistakes'
+              text='mistakes'
               column
               input='0'
               link={0 === 9 ? 'mistakes' : ''}
@@ -43,16 +43,16 @@ function Homepage() {
             <h1 className='text-3xl font-bold'>{currentUser.username}</h1>
           </div>
           <div className='w-full flex justify-center items-center flex-col col-span-2'>
-            <BaseButton button='search' column link='search' />
-            <BaseButton button='games' column subHeadings={games} />
+            <BaseButton text='search' column link='search' />
+            <BaseButton text='games' column subHeadings={games} />
           </div>
         </div>
       ) : (
         <div className='flex items-center flex-col h-screen'>
           <img src={logo} alt='logo' className='w-60 m-6' />
           <div className='flex w-full justify-center lg:flex-row flex-col items-center'>
-            <BaseButton button='login' link='login' />
-            <BaseButton button='signup' link='signup' />
+            <BaseButton text='login' link='login' />
+            <BaseButton text='signup' link='signup' />
           </div>
         </div>
       )}
