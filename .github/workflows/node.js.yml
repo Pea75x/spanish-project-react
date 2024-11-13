@@ -5,9 +5,9 @@
 
 on:
   push:
-    branches: ['*']
+    branches: ['master']
   pull_request:
-    branches: ['*']
+    branches: ['master']
 
 jobs:
   build:
@@ -36,7 +36,7 @@ jobs:
         run: CI=false npm test
 
       - name: Deploy production to Netlify
-        uses: netlify/actions/cli@v3.1.0
+        uses: South-Paw/action-netlify-deploy@v1.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
