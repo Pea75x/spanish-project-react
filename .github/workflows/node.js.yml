@@ -34,3 +34,12 @@ jobs:
 
       - name: Run tests
         run: CI=false npm test
+
+      - name: Deploy production to Netlify
+        uses: netlify/actions/cli@v3.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+          build-dir: './build'
+          comment-on-commit: true
