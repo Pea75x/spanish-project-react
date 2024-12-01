@@ -3,11 +3,12 @@ import { getAllItems, createNewItem, getItemById } from '../api/items';
 import SentenceCard from './SentenceCard';
 import GameOver from './GameOver';
 import { useLocation } from 'react-router-dom';
-import { selectCurrentUser } from '../store/users/user.selector';
+import { selectCurrentUser, selectToken } from '../store/users/user.selector';
 import { useSelector } from 'react-redux';
 
 function Game() {
   const currentUser = useSelector(selectCurrentUser);
+  const token = useSelector(selectToken);
   const { state } = useLocation();
   const { gameId } = state;
   const [sentences, setSentences] = React.useState([]);
@@ -22,11 +23,11 @@ function Game() {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const gameData = await getItemById('games', gameId);
-        const allSentences = await getAllItems('sentences', {
+        const gameData = await getItemById('games', gameId, token);
+        const allSentences = await getAllItems('sentences', token, {
           themes: gameData.themes
         });
-        const allWords = await getAllItems('words');
+        const allWords = await getAllItems('words', token);
 
         setGame(gameData);
         setSentences(allSentences.data);
@@ -84,7 +85,7 @@ function Game() {
 
     const createGameScore = async () => {
       try {
-        const getGameScore = await createNewItem('game_score', getScoreData);
+        const getGameScore = await createNewItem('game_score', getScoreData, token);
         setGameScore(getGameScore);
         setGameOver(true);
       } catch (error) {

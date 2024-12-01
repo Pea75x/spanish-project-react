@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../store/users/user.selector';
 import { setCurrentUser } from '../store/users/user.action';
-import { removeToken } from '../utils/authUtils';
 import logo from '../logo.png';
 
 function Navbar() {
@@ -13,7 +12,6 @@ function Navbar() {
   const currentUser = useSelector(selectCurrentUser);
 
   function logout() {
-    removeToken();
     dispatch(setCurrentUser({ currentUser: null, token: null }));
     navigate('/');
   }

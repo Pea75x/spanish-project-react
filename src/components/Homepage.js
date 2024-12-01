@@ -3,17 +3,19 @@ import { useSelector } from 'react-redux';
 import logo from '../logo.png';
 import BaseButton from './BaseButton';
 import { getAllItems } from '../api/items';
-import { selectCurrentUser } from '../store/users/user.selector';
+import { selectCurrentUser, selectToken } from '../store/users/user.selector';
 
 function Homepage() {
   const currentUser = useSelector(selectCurrentUser);
+  const token = useSelector(selectToken);
   const [games, setGames] = React.useState({});
 
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const gameData = await getAllItems('games');
+        const gameData = await getAllItems('games', token);
         setGames(gameData.data);
+        console.log("user: ", currentUser)
       } catch (error) {
         console.log('error', error);
       }

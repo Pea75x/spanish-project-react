@@ -4,7 +4,7 @@ import themes from '../data/themes.json';
 import { useNavigate } from 'react-router-dom';
 import BaseSwitch from './BaseSwitch';
 import BaseButton from './BaseButton';
-import { selectCurrentUser } from '../store/users/user.selector';
+import { selectCurrentUser, selectToken } from '../store/users/user.selector';
 import { useSelector } from 'react-redux';
 
 function SearchList() {
@@ -18,12 +18,16 @@ function SearchList() {
 
   const navigate = useNavigate();
   const currentUser = useSelector(selectCurrentUser);
+  const token = useSelector(selectToken);
 
   React.useEffect(() => {
+    console.log("current user:", !!currentUser)
+    console.log("token: ", token)
     const getData = async () => {
+      console.log("WORKING???")
       try {
-        const allWords = await getAllItems('words');
-        const allSentences = await getAllItems('sentences');
+        const allWords = await getAllItems('words', token);
+        const allSentences = await getAllItems('sentences', token);
         setSentences(allSentences.data);
         setWords(allWords.data);
         setFilteredList(allWords.data);
