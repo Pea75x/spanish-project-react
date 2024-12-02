@@ -21,10 +21,7 @@ function SearchList() {
   const token = useSelector(selectToken);
 
   React.useEffect(() => {
-    console.log("current user:", !!currentUser)
-    console.log("token: ", token)
     const getData = async () => {
-      console.log("WORKING???")
       try {
         const allWords = await getAllItems('words', token);
         const allSentences = await getAllItems('sentences', token);

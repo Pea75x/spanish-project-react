@@ -15,7 +15,6 @@ function Homepage() {
       try {
         const gameData = await getAllItems('games', token);
         setGames(gameData.data);
-        console.log("user: ", currentUser)
       } catch (error) {
         console.log('error', error);
       }
