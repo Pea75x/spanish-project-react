@@ -4,6 +4,8 @@ import { titleCase } from '../utils/stringUtils';
 import { getItemById } from '../api/items';
 import { useNavigate } from 'react-router-dom';
 import { removeSnakeCase } from '../utils/stringUtils';
+import { selectToken } from '../store/users/user.selector';
+import { useSelector } from 'react-redux';
 
 function Sentence() {
   const { state } = useLocation();
@@ -11,11 +13,12 @@ function Sentence() {
   const [sentenceId, setSentenceId] = React.useState(id);
   const [sentence, setSentence] = React.useState({});
   const navigate = useNavigate();
+  const token = useSelector(selectToken);
 
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const sentenceData = await getItemById('sentences', sentenceId);
+        const sentenceData = await getItemById('sentences', sentenceId, token);
         setSentence(sentenceData);
       } catch (error) {
         console.log('error', error);

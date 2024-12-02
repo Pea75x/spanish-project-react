@@ -3,12 +3,13 @@ import FormInput from './FormInput';
 import { getAllItems, createNewItem } from '../api/items';
 import themes from '../data/themes.json';
 import SearchableInput from './SearchableInput';
-import { selectCurrentUser } from '../store/users/user.selector';
+import { selectCurrentUser, selectToken } from '../store/users/user.selector';
 import { useSelector } from 'react-redux';
 import BaseButton from './BaseButton';
 
 function Create() {
   const currentUser = useSelector(selectCurrentUser);
+  const token = useSelector(selectToken);
 
   const emptyWord = {
     word: '',
@@ -36,7 +37,7 @@ function Create() {
 
   const getData = async () => {
     try {
-      const allWords = await getAllItems('words');
+      const allWords = await getAllItems('words', token);
       setWords(allWords.data);
     } catch (error) {
       console.log('error', error);
@@ -56,7 +57,7 @@ function Create() {
 
     const createData = async () => {
       try {
-        await createNewItem(itemName, itemData);
+        await createNewItem(itemName, itemData, token);
         await getData();
         setMessage(`Successfully created ${itemName}`);
         setNewWord(emptyWord);

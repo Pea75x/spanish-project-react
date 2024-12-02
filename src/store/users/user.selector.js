@@ -8,3 +8,8 @@ export const selectCurrentUser = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.currentUser
 );
+
+export const selectToken = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.token
+);

@@ -5,6 +5,8 @@ import { titleCase } from '../utils/stringUtils';
 import VerbTenseCard from './VerbTenseCard';
 import WordCard from './WordCard';
 import { useNavigate } from 'react-router-dom';
+import { selectToken } from '../store/users/user.selector';
+import { useSelector } from 'react-redux';
 
 function Word() {
   const { state } = useLocation();
@@ -13,18 +15,20 @@ function Word() {
   const [word, setWord] = React.useState({});
   const [verbTenses, setVerbTenses] = React.useState({});
   const navigate = useNavigate();
+  const token = useSelector(selectToken);
 
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const wordData = await getItemById('words', wordId);
+        const wordData = await getItemById('words', wordId, token);
         setWord(wordData);
 
         if (wordData.type_verb) {
           const verbTenseData = await getItemByName(
             'verb_tenses',
             'verb',
-            wordId
+            wordId,
+            token
           );
           setVerbTenses(verbTenseData.data);
         }
