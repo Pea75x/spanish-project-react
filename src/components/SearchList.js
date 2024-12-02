@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 function SearchList() {
   const [words, setWords] = React.useState([]);
   const [sentences, setSentences] = React.useState([]);
-  const [filteredList, setFilteredList] = React.useState({});
+  const [filteredList, setFilteredList] = React.useState([]);
   const [searchFilter, setSearchFilter] = React.useState('');
   const [selectedTheme, setSelectedTheme] = React.useState('');
   const [selectedTab, setSelectedTab] = React.useState('word');
