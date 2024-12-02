@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 function SearchList() {
   const [words, setWords] = React.useState([]);
   const [sentences, setSentences] = React.useState([]);
-  const [filteredList, setFilteredList] = React.useState({});
+  const [filteredList, setFilteredList] = React.useState([]);
   const [searchFilter, setSearchFilter] = React.useState('');
   const [selectedTheme, setSelectedTheme] = React.useState('');
   const [selectedTab, setSelectedTab] = React.useState('word');
@@ -21,10 +21,7 @@ function SearchList() {
   const token = useSelector(selectToken);
 
   React.useEffect(() => {
-    console.log("current user:", !!currentUser)
-    console.log("token: ", token)
     const getData = async () => {
-      console.log("WORKING???")
       try {
         const allWords = await getAllItems('words', token);
         const allSentences = await getAllItems('sentences', token);

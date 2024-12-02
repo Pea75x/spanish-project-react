@@ -33,8 +33,8 @@ function Game() {
         setSentences(allSentences.data);
         setWords(allWords.data);
         setPlayersSentences(new Array(allSentences.data.length).fill([]));
-      } catch (err) {
-        console.log('error', err);
+      } catch (error) {
+        console.log('error', error);
       }
     };
     getData();
@@ -90,7 +90,7 @@ function Game() {
         setGameOver(true);
       } catch (error) {
         setMessage('Error saving game');
-        console.log(error);
+        console.log("error", error);
       }
     };
     createGameScore();
