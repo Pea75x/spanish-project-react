@@ -74,7 +74,7 @@ function SearchableInput({
           />
 
           {list && inputItem && (
-            <ul className='text-left px-2 absolute w-full drop-shadow bg-white border rounded-b-md max-h-28 overflow-y-auto z-10'>
+            <ul className='text-left px-2 absolute w-full drop-shadow bg-white border rounded-b-md max-h-28 overflow-y-auto z-10 text-nowrap'>
               {list.length ? (
                 list.map((searchItem) => (
                   <li
