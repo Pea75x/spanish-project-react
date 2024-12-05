@@ -11,6 +11,7 @@
   { "code": "flirting", "value": "Flirting" },
   { "code": "travel", "value": "Travel" },
   { "code": "work", "value": "Work" },
+  { "code": "doctors", "value": "Doctors" },
   { "code": "time", "value": "Time" },
   { "code": "numbers", "value": "Numbers" },
   { "code": "shopping", "value": "Shopping" },
@@ -20,14 +21,11 @@
     "code": "preterito_perfecto_compuesto",
     "value": "Pretérito Perfecto Compuesto"
   },
-  {
-    "code": "preterito_pluscuamperfecto",
-    "value": "Pretérito Pluscuamperfecto"
-  },
   { "code": "presente", "value": "Presente" },
   { "code": "futuro_simple", "value": "Futuro Simple" },
   { "code": "futuro_compuesto", "value": "Futuro Compuesto" },
   { "code": "condicional_simple", "value": "Condicional Simple" },
   { "code": "indicativo", "value": "Indicativo" },
-  { "code": "subjuntivo", "value": "Subjuntivo" }
+  { "code": "subjuntivo", "value": "Subjuntivo" },
+  { "code": "presente_progresivo", "value": "Presente Progresivo"}
 ]
