@@ -27,5 +27,5 @@
   { "code": "condicional_simple", "value": "Condicional Simple" },
   { "code": "indicativo", "value": "Indicativo" },
   { "code": "subjuntivo", "value": "Subjuntivo" },
-  { "code": "presente_progresivo", "value": "Presente Progresivo"}
+  { "code": "gerundio", "value": "gerundio"}
 ]
