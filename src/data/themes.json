@@ -20,10 +20,6 @@
     "code": "preterito_perfecto_compuesto",
     "value": "Pretérito Perfecto Compuesto"
   },
-  {
-    "code": "preterito_pluscuamperfecto",
-    "value": "Pretérito Pluscuamperfecto"
-  },
   { "code": "presente", "value": "Presente" },
   { "code": "futuro_simple", "value": "Futuro Simple" },
   { "code": "futuro_compuesto", "value": "Futuro Compuesto" },
