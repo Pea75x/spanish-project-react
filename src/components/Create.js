@@ -167,7 +167,7 @@ function Create() {
 
                 <button
                   type='submit'
-                  className='w-1/4 h-10 text-center hover:bg-amber-100 text-gray-800 font-semibold border border-gray-400 rounded shadow mt-2'
+                  className='w-1/4 h-10 text-center hover:bg-orange-200 text-gray-800 font-semibold border border-gray-400 rounded shadow mt-2'
                 >
                   Create
                 </button>
@@ -231,7 +231,7 @@ function Create() {
                 />
                 <button
                   type='submit'
-                  className='w-1/4 h-10 text-center hover:bg-amber-100 text-gray-800 font-semibold border border-gray-400 rounded shadow mt-4'
+                  className='w-1/4 h-10 text-center hover:bg-orange-200 text-gray-800 font-semibold border border-gray-400 rounded shadow mt-4'
                 >
                   Create
                 </button>

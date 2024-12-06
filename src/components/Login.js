@@ -47,7 +47,7 @@ function Login() {
   return (
     <div className='flex items-center flex-col h-screen text-gray-700'>
       <img src={logo} alt='logo' className='w-32 m-6' />
-      <div className='w-96 rounded-lg border shadow-lg flex flex-col justify-between px-12 py-5'>
+      <div className='w-96 rounded-lg bg-orange-100 shadow-lg flex flex-col justify-between px-12 py-5'>
         <h1 className='text-4xl font-bold w-full mb-3 title'>Login</h1>
         <form onSubmit={handleSubmit}>
           <FormInput
@@ -77,7 +77,7 @@ function Login() {
           </div>
           <button
             type='submit'
-            className='w-1/3 h-10 text-center hover:bg-amber-100 text-gray-800 font-semibold border border-gray-400 rounded shadow mt-4'
+            className='w-1/3 h-10 text-center bg-white hover:bg-orange-200 text-gray-800 font-semibold rounded shadow mt-4'
           >
             Login
           </button>
