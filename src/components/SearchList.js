@@ -6,6 +6,7 @@ import BaseSwitch from './BaseSwitch';
 import BaseButton from './BaseButton';
 import { selectCurrentUser, selectToken } from '../store/users/user.selector';
 import { useSelector } from 'react-redux';
+import tiles from '../tiles.jpg'
 
 function SearchList() {
   const [words, setWords] = React.useState([]);
@@ -55,15 +56,15 @@ function SearchList() {
   }, [selectedTheme, searchFilter, selectedTab, language]);
 
   return (
-    <div className='flex items-center flex-col h-screen'>
+    <div className='flex items-center flex-col'>
       <h1 className='text-5xl font-bold w-full my-5 text-center'>Search</h1>
       {currentUser ? (
-        <div className='flex w-11/12 h-fit border rounded-lg shadow-lg'>
+        <div className='flex w-11/12 h-fit'>
           <div className='relative h-[77vh] overflow-y-auto md:w-2/5 w-1/3'>
-            <div className='grid grid-flow-row-dense lg:grid-cols-4 md:grid-cols-2 grid-cols-1 bg-amber-50 h-fit p-2 rounded-l-lg'>
+            <div className='grid grid-flow-row-dense lg:grid-cols-4 md:grid-cols-2 grid-cols-1 h-fit p-2 rounded-l-lg'>
               <button
-                className={`text-sm h-14 text-center hover:bg-orange-100 text-gray-800 border border-gray-400 rounded-lg shadow m-2 title ${
-                  selectedTheme === '' && 'bg-orange-100 border-2'
+                className={`bg-center text-sm h-14 text-center bg-orange-100 hover:bg-orange-200 text-gray-800 rounded-lg m-2 title ${
+                  selectedTheme === '' && 'bg-orange-200 shadow-lg'
                 }`}
                 onClick={() => setSelectedTheme('')}
               >
@@ -72,8 +73,8 @@ function SearchList() {
               {themes.map((theme) => (
                 <button
                   key={theme.code}
-                  className={`text-xs h-14 text-center hover:bg-orange-100 text-gray-800 border border-gray-400 rounded-lg shadow m-2 title ${
-                    selectedTheme === theme.code && 'bg-orange-100 border-2'
+                  className={`text-xs h-14 text-center bg-orange-100 hover:bg-orange-200 text-gray-800 rounded-lg hover:shadow m-2 title ${
+                    selectedTheme === theme.code && 'bg-orange-200 shadow-lg'
                   }`}
                   onClick={() => setSelectedTheme(theme.code)}
                 >
@@ -83,20 +84,20 @@ function SearchList() {
             </div>
           </div>
 
-          <div className='md:w-3/5 w-2/3'>
+          <div className='md:w-3/5 w-2/3 border rounded-xl'>
             <div className='flex w-full justify-around text-center'>
               <div
                 onClick={() => setSelectedTab('word')}
-                className={`w-full py-2 border-r ${
-                  selectedTab === 'sentence' && 'border-b bg-gray-50'
+                className={`w-full py-2 border-r rounded-tl-xl ${
+                  selectedTab === 'sentence' && 'border-b bg-orange-100'
                 }`}
               >
                 Words
               </div>
               <div
                 onClick={() => setSelectedTab('sentence')}
-                className={`w-full py-2 ${
-                  selectedTab === 'word' && 'border-b bg-gray-50'
+                className={`w-full py-2 rounded-tr-xl ${
+                  selectedTab === 'word' && 'border-b bg-orange-100'
                 }`}
               >
                 Sentences

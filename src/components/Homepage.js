@@ -4,6 +4,7 @@ import logo from '../logo.png';
 import BaseButton from './BaseButton';
 import { getAllItems } from '../api/items';
 import { selectCurrentUser, selectToken } from '../store/users/user.selector';
+import tiles from '../tiles.jpg'
 
 function Homepage() {
   const currentUser = useSelector(selectCurrentUser);
@@ -25,7 +26,7 @@ function Homepage() {
   return (
     <div>
       {currentUser ? (
-        <div className='md:flex md:flex-row grid grid-cols-2 content-start h-screen items-center lg:w-10/12 mx-auto mt-5 md:mt-0'>
+        <div style={{'height': 'calc(100vh - 50px)'}} className='md:flex md:flex-row grid grid-cols-2 content-start items-center lg:w-10/12 mx-auto mt-5 md:mt-0'>
           <div className='w-full flex justify-center items-center flex-col ml-6'>
             <BaseButton
               text='total score'
