@@ -3,6 +3,8 @@ import { titleCase } from '../utils/stringUtils';
 import pronouns from '../data/pronouns.json';
 
 function VerbTenseCard({ tense }) {
+  const textLength = tense.sentences[0].sentence.length
+
   return (
     <div className="card-container m-4">
       <div className='card'>
@@ -21,10 +23,12 @@ function VerbTenseCard({ tense }) {
               </div>
             ))}
           </div>
-          <div className='h-20 flex flex-col justify-center border-t text-amber-600 bg-amber-50 rounded-b-lg'>
+          <div className='h-20 flex flex-col justify-center border-t text-amber-600 bg-amber-50 rounded-b-lg text-[16px]'>
             {tense.sentences.length > 0 && (
               <div>
-                <div className='font-bold'>{tense.sentences[0].sentence}</div>
+                <div className={`font-bold ${textLength > 30 &&  "text-[14px]"} ${textLength < 20 && "text-[22px]"}`}>
+                  {tense.sentences[0].sentence}
+                </div>
               </div>
             )}
           </div>
@@ -40,10 +44,12 @@ function VerbTenseCard({ tense }) {
               </div>
             ))}
           </div>
-          <div className='h-20 flex flex-col justify-center border-t text-amber-600 bg-amber-50 rounded-b-lg'>
+          <div className='h-20 flex flex-col justify-center border-t text-amber-600 bg-amber-50 rounded-b-lg text-[16px]'>
             {tense.sentences.length > 0 && (
               <div>
-                <div className='font-bold'>{tense.sentences[0].translation}</div>
+                <div className={`font-bold ${textLength > 30 &&  "text-[14px]"} ${textLength < 20 && "text-[22px]"}`}>
+                  {tense.sentences[0].translation}
+                </div>
               </div>
             )}
           </div>
