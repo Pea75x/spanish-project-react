@@ -49,7 +49,7 @@ function Create() {
   }
 
   function toggleCheckbox(value, item, setItem) {
-    setItem({ ...item, type_verb: value });
+    setItem({ ...item, [value]: !item[value] });
   }
 
   function createItem(event, itemName, itemData) {
@@ -128,9 +128,9 @@ function Create() {
                 <label className='inline-flex items-center cursor-pointer mb-4'>
                   <input
                     type='checkbox'
-                    value={newWord.type_verb}
+                    checked={newWord.type_verb}
                     onChange={(event) =>
-                      toggleCheckbox(!newWord.type_verb, newWord, setNewWord)
+                      toggleCheckbox("type_verb", newWord, setNewWord)
                     }
                     name='type_verb'
                     className='sr-only peer'
