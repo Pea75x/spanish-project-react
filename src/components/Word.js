@@ -59,10 +59,13 @@ function Word() {
           </div>
           <div>
             {verbTenses.length ? (
+              <div>
               <div className='flex flex-wrap justify-evenly'>
                 {verbTenses.map((tense) => (
                   <VerbTenseCard tense={tense} key={tense.id} />
                 ))}
+              </div>
+              <WordSentencesCard sentences={word.sentences} centered/>
               </div>
             ) : (
               <div>
@@ -79,10 +82,8 @@ function Word() {
                 )}
               </div>
             )}
-            {!word.type_verb ? (
+            {!word.type_verb && (
               <WordCard word={word} handleClick={setWordId} />
-            ) : (
-              <WordSentencesCard sentences={word.sentences} centered/>
             )}
           </div>
         </div>

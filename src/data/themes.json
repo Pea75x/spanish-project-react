@@ -18,6 +18,10 @@
   { "code": "preterito_indefinido", "value": "Pretérito Indefinido" },
   { "code": "preterito_imperfecto", "value": "Pretérito Imperfecto" },
   {
+    "code": "preterito_pluscuamperfecto",
+    "value": "Pretérito Pluscuamperfecto"
+  },
+   {
     "code": "preterito_perfecto_compuesto",
     "value": "Pretérito Perfecto Compuesto"
   },
