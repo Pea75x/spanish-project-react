@@ -15,7 +15,7 @@ function FormInput({
     >
       <div
         data-testid='label'
-        className={inline ? 'col-span-1 text-right mx-4 my-auto' : 'my-2'}
+        className={inline ? 'col-span-1 text-right mr-4 my-auto' : 'my-2'}
       >
         {label && <label>{label}</label>}
       </div>
