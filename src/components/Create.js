@@ -27,24 +27,56 @@ function Create() {
     word_ids: []
   };
 
-  const [newWord, setNewWord] = React.useState(emptyWord);
-  const [newSentence, setNewSentence] = React.useState(emptySentence);
+  const emptyTense = {
+    name: '',
+    verb_id: '',
+    yo_id: '',
+    tu_id: '',
+    el_id: '',
+    nosotros_id: '',
+    ellos_id: '',
+    participle_id: ''
+  }
+
   const [words, setWords] = React.useState([]);
   const [message, setMessage] = React.useState('');
 
-  const wordForm = [
-    {label: "word", type: "text"},
-    {label: "translation", type: "text"},
-    {label: "type_verb", type: "checkbox"},
-    {label: "verb_id", type: "searchable", not_verb: true},
-    {label: "themes", type: "searchable", searchlist: themes, value: "value", code: "code", unique: true}
-  ]
-
-  const sentenceForm = [
-    {label: "sentence", type: "text", multiline: true},
-    {label: "translation", type: "text", multiline: true},
-    {label: "word_ids", type: "searchable", searchlist: words, value:'word', code:'id'},
-    {label: "themes", type: "searchable", searchlist: themes, value:'value', code:'code', unique: true}
+  const formArray = [
+    {
+      formModel: "word",
+      emptyValue: emptyWord,
+      formData: [ 
+        {label: "word", type: "text"},
+        {label: "translation", type: "text"},
+        {label: "type_verb", type: "checkbox"},
+        {label: "verb_id", type: "searchable", not_verb: true},
+        {label: "themes", type: "searchable", searchlist: themes, value: "value", code: "code", unique: true}
+      ]
+    },
+    {
+      formModel: "sentence",
+      emptyValue: emptySentence,
+      formData: [
+        {label: "sentence", type: "text", multiline: true},
+        {label: "translation", type: "text", multiline: true},
+        {label: "word_ids", type: "searchable", searchlist: words, value:'word', code:'id'},
+        {label: "themes", type: "searchable", searchlist: themes, value:'value', code:'code', unique: true}
+      ]
+    },
+    {
+      formModel: "verb_tense",
+      emptyValue: emptyTense,
+      formData: [
+        {label: "name", type: "text" },
+        {label: "verb_id", type: "searchable", singleSearch: true, value:'word', code:'id', searchlist: words},
+        {label: "yo_id", type: "searchable", singleSearch: true, value:'word', code:'id', searchlist: words},
+        {label: "tu_id", type: "searchable", singleSearch: true, value:'word', code:'id', searchlist: words},
+        {label: "el_id", type: "searchable", singleSearch: true, value:'word', code:'id', searchlist: words},
+        {label: "nosotros_id", type: "searchable", singleSearch: true, value:'word', code:'id', searchlist: words},
+        {label: "ellos_id", type: "searchable", singleSearch: true, value:'word', code:'id', searchlist: words},
+        {label: "participle_id", type: "searchable", singleSearch: true, value:'word', code:'id', searchlist: words}
+      ]
+    }
   ]
 
   React.useEffect(() => {
@@ -59,33 +91,6 @@ function Create() {
       console.log('error', error);
     }
   };
-
-  function handleChange(event, item, setItem) {
-    setItem({ ...item, [event.target.name]: event.target.value });
-  }
-
-  function toggleCheckbox(value, item, setItem) {
-    setItem({ ...item, [value]: !item[value] });
-  }
-
-  function createItem(event, itemName, itemData) {
-    event.preventDefault();
-
-    const createData = async () => {
-      try {
-        await createNewItem(itemName, itemData, token);
-        await getData();
-        setMessage(`Successfully created ${itemName}`);
-        setNewWord(emptyWord);
-        setNewSentence(emptySentence);
-      } catch (error) {
-        error.response.status === 500
-          ? setMessage(error.message)
-          : setMessage(error.response.data);
-      }
-    };
-    createData();
-  }
 
   React.useEffect(() => {
     if (message) {
@@ -109,8 +114,7 @@ function Create() {
       )}
       {currentUser && currentUser.admin ? (
         <div className='flex lg:flex-row flex-col lg:items-start justify-around items-center lg:w-11/12 w-full mx-auto'>
-          <CreateForm itemName="word" emptyItem={emptyWord} setMessage={setMessage} getData={getData} formData={wordForm} words={words}/>
-          <CreateForm itemName="sentence" emptyItem={emptySentence} setMessage={setMessage} getData={getData} formData={sentenceForm} words={words}/>
+          {formArray.map((form) => <CreateForm itemName={form.formModel} emptyItem={form.emptyValue} setMessage={setMessage} getData={getData} formData={form.formData} words={words}/>)}
         </div>
       ) : (
         <div className='flex items-center flex-col'>

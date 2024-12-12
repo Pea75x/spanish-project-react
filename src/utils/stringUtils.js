@@ -1,9 +1,6 @@
 export function titleCase(text) {
-  const CapitalText = text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
-
-  return CapitalText.replace(/_/g, ' ');
+  const removeSnake = text.replace(/_/g, ' ')
+  
+  return removeSnake.charAt(0).toUpperCase() + removeSnake.substr(1).toLowerCase();
 }
 
-export function removeSnakeCase(str) {
-  return str.replace(/_/g, ' ');
-}

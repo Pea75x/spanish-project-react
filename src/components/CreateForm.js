@@ -5,7 +5,6 @@ import { selectToken } from '../store/users/user.selector';
 import { useSelector } from 'react-redux';
 import FormInput from './FormInput';
 import SearchableInput from './SearchableInput';
-import themes from '../data/themes.json';
 
 function CreateForm({itemName, emptyItem, setMessage, getData, formData, words}) {
   const [item, setItem] = React.useState(emptyItem)
@@ -98,6 +97,7 @@ function CreateForm({itemName, emptyItem, setMessage, getData, formData, words})
                 newItem={item}
                 unique={formField.unique}
                 inputClass='w-3/4 mx-auto'
+                singleSearch={formField.singleSearch}
               />}
             </div>
           ))}
