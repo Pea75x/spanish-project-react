@@ -24,7 +24,7 @@ function WordCard({ word, handleClick }) {
           <h2 className='text-3xl font-semibold'>Themes</h2>
           <div className='flex m-2 flex-wrap justify-center'>
             {word.themes.map((theme) => (
-              <div className='rounded-full bg-amber-50 border border-amber-600 text-amber-600 m-1 px-3'>
+              <div className='rounded-full bg-amber-50 border border-amber-600 text-amber-600 m-1 px-3' key={theme}>
                 {titleCase(theme)}
               </div>
             ))}

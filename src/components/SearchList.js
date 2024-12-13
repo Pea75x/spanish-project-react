@@ -6,7 +6,6 @@ import BaseSwitch from './BaseSwitch';
 import BaseButton from './BaseButton';
 import { selectCurrentUser, selectToken } from '../store/users/user.selector';
 import { useSelector } from 'react-redux';
-import tiles from '../tiles.jpg'
 
 function SearchList() {
   const [words, setWords] = React.useState([]);
@@ -26,6 +25,7 @@ function SearchList() {
       try {
         const allWords = await getAllItems('words', token);
         const allSentences = await getAllItems('sentences', token);
+
         setSentences(allSentences.data);
         setWords(allWords.data);
         setFilteredList(allWords.data);

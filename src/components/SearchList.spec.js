@@ -1,9 +1,10 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import SearchList from './SearchList';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getAllItems } from '../api/items';
 import BaseButton from './BaseButton';
+import { act } from '@testing-library/react';
 
 // Mocks
 jest.mock('react-router-dom', () => ({
@@ -42,14 +43,14 @@ describe('SearchList', () => {
   });
 
   test('renders search list when user is logged in', async () => {
-    useSelector.mockReturnValue({ id: 1 }); // logged in user
+    useSelector.mockReturnValue({ id: 1 });
 
     getAllItems
       .mockResolvedValueOnce({
-        data: [{ word: 'hola', translation: 'hello' }]
+        data: [{ id: 1, word: 'hola', translation: 'hello' }]
       })
       .mockResolvedValueOnce({
-        data: [{ sentence: 'sentence', translation: 'translation' }]
+        data: [{ id: 3, sentence: 'sentence', translation: 'translation' }]
       });
 
     render(<SearchList />);
@@ -61,7 +62,17 @@ describe('SearchList', () => {
   test('renders list of themes', async () => {
     useSelector.mockReturnValue({ id: 1 });
 
-    render(<SearchList />);
+    getAllItems
+      .mockResolvedValueOnce({
+        data: [{ id: 1, word: 'hola', translation: 'hello' }]
+      })
+      .mockResolvedValueOnce({
+        data: [{ id: 3, sentence: 'sentence', translation: 'translation' }]
+      });
+
+    await act(async () => {
+      render(<SearchList />);
+    });
 
     const themeButton = await screen.findByText('Theme 1');
     expect(themeButton).toBeInTheDocument();
@@ -71,8 +82,8 @@ describe('SearchList', () => {
     getAllItems
       .mockResolvedValueOnce({
         data: [
-          { word: 'hola', translation: 'hello' },
-          { word: 'adios', text: 'bye' }
+          { id: 1, word: 'hola', translation: 'hello' },
+          { id: 2, word: 'adios', text: 'bye' }
         ]
       })
       .mockResolvedValueOnce({
@@ -83,22 +94,22 @@ describe('SearchList', () => {
 
     render(<SearchList />);
 
-    const englishWord = await screen.findByText('adios');
-    expect(englishWord).toBeInTheDocument();
+    const anotherWord = await screen.findByText('adios');
+    expect(anotherWord).toBeInTheDocument();
 
     fireEvent.change(screen.getByPlaceholderText('Search'), {
       target: { value: 'Hola' }
     });
     expect(screen.getByText('hola')).toBeInTheDocument();
-    expect(englishWord).not.toBeInTheDocument();
+    expect(anotherWord).not.toBeInTheDocument();
   });
 
   test('filters the list by theme', async () => {
     getAllItems
       .mockResolvedValueOnce({
         data: [
-          { word: 'hola', translation: 'hello', themes: ['theme1'] },
-          { word: 'adios', text: 'bye', themes: [] }
+          { id: 1, word: 'hola', translation: 'hello', themes: ['theme1'] },
+          { id: 2, word: 'adios', text: 'bye', themes: [] }
         ]
       })
       .mockResolvedValueOnce({
