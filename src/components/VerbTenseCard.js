@@ -3,7 +3,7 @@ import { titleCase } from '../utils/stringUtils';
 import pronouns from '../data/pronouns.json';
 
 function VerbTenseCard({ tense }) {
-  const textLength = tense.sentences[0].sentence.length
+  const textLength = tense.sentences[0]?.sentence.length
 
   return (
     <div className="card-container m-4">

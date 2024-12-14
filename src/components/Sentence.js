@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { titleCase } from '../utils/stringUtils';
 import { getItemById } from '../api/items';
 import { useNavigate } from 'react-router-dom';
-import { removeSnakeCase } from '../utils/stringUtils';
 import { selectToken } from '../store/users/user.selector';
 import { useSelector } from 'react-redux';
 
@@ -45,7 +44,7 @@ function Sentence() {
               <div className='flex m-2 flex-wrap justify-center'>
                 {sentence.themes.map((theme) => (
                   <div className='rounded-full bg-amber-50 border border-amber-600 text-amber-600 m-1 px-3'>
-                    {removeSnakeCase(theme)}
+                    {titleCase(theme)}
                   </div>
                 ))}
               </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { removeSnakeCase } from '../utils/stringUtils';
+import { titleCase } from '../utils/stringUtils';
 
 function SearchableInput({
   searchList,
@@ -62,7 +62,7 @@ function SearchableInput({
     <div className=''>
       <div className={`grid grid-cols-3 ${inputClass}`}>
         <label className='text-right mx-4 my-auto col-span-1'>
-          {removeSnakeCase(name)}
+          {titleCase(name)}
         </label>
         <div className='relative col-span-2'>
           <input

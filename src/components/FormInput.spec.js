@@ -23,7 +23,7 @@ test('applies inline styles when inline is true', () => {
   const labelElement = screen.getByTestId('label');
 
   expect(container).toHaveClass('grid grid-cols-3 my-4');
-  expect(labelElement).toHaveClass('col-span-1 text-right mx-4 my-auto');
+  expect(labelElement).toHaveClass('col-span-1 text-right mr-4 my-auto');
 });
 
 test('applies default styles when inline is false', () => {
@@ -32,7 +32,7 @@ test('applies default styles when inline is false', () => {
   const labelElement = screen.getByTestId('label');
 
   expect(container).toHaveClass('my-2');
-  expect(labelElement).not.toHaveClass('col-span-1 text-right mx-4 my-auto');
+  expect(labelElement).not.toHaveClass('col-span-1 text-right mr-4 my-auto');
 });
 
 // Label prop
