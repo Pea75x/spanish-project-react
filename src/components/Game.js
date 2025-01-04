@@ -66,7 +66,6 @@ function Game() {
     if (wrongAnswers === false) {
       progress >= sentences.length - 1 ? endGame(currentScore) : setProgress(progress + 1)
     }
-    console.log(progress, sentences.length)
   }
 
   function endGame(score) {
@@ -105,20 +104,24 @@ function Game() {
           </div>
         </div>
       )}
-      <div className='flex justify-center items-center' style={{'height': 'calc(100vh - 230px)'}}>
-        {sentences[0] ? (
-          <div>
-            <SentenceCard sentence={sentences[progress]}
-              words={words}
-              markAnswer={getAnswer}
-              sentenceIndex={progress}/>
-            <div className="absolute bottom-0 right-0 p-6 text-5xl text-amber-600">{progress + 1}/{sentences.length}</div>
+      {
+        sentences[0] ? (
+          <div className='flex justify-center items-start' style={{'height': 'calc(100vh - 230px)'}}>
+            {gameOver ? (
+              <GameOver gameScore={gameScore} game={game}/> ) : (
+              <div>
+                <SentenceCard sentence={sentences[progress]}
+                  words={words}
+                  markAnswer={getAnswer}
+                  sentenceIndex={progress}/>
+                <div className="absolute bottom-0 right-0 p-6 text-5xl text-amber-600">{progress + 1}/{sentences.length}</div>
+              </div>
+            )}
           </div>
         ) : (
-          <div>loading...</div>
-        )}
-      </div>
-      {gameOver && <GameOver gameScore={gameScore} game={game} />}
+          <div>Loading...</div>
+        )
+      }
     </div>
   );
 }

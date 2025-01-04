@@ -53,16 +53,16 @@ function SentenceCard({ sentence, markAnswer, words, sentenceIndex }) {
   useEffect(() => {
     setPlayersAnswer(new Array(sentence.words.length).fill(''));
     setVisibleInputIndex(-1);
-  }, [sentence]);
+  }, [sentenceIndex]);
 
   return (
-    <div className='py-6 text-center'>
+    <div className='py-6 flex flex-col items-center justify-end' style={{'height': 'calc(100vh - 270px)'}}>
       <div className="flex justify-center items-start">
         <img src={Frog} width="200px"/>
         <h2 className='speech-bubble text-xl font-bold text-center inline-block p-4 rounded-xl bg-white relative'>
           {sentence.translation}
         </h2>
-      </div>
+      </div>  
       <div className='flex justify-center my-6' ref={containerRef}>
         {sentence.words.map((word, wordIndex) => (
           <div key={wordIndex} className='m-1 relative'>
