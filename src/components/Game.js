@@ -93,7 +93,7 @@ function Game() {
       {sentences && <div className='w-2/3 border border-black bg-white mx-auto my-2 rounded-xl h-[20px]'>
         <div className={`h-full bg-amber-600 rounded-l-xl ${progress === 100 && 'rounded-xl'}`} style={{ width: `${(progress / sentences.length) * 100}%` }}></div>
       </div>}
-      <h1 className='text-5xl font-bold text-center py-[20px] h-[90px]'>{game.name}</h1>
+      <h1 className='md:text-5xl text-3xl font-bold text-center py-[20px] h-[90px]'>{game.name}</h1>
       <p className='text-xl text-center h-[40px]'>
         Please fill in the boxes below with the spanish tanslation
       </p>

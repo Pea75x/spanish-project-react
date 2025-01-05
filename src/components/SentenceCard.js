@@ -63,7 +63,7 @@ function SentenceCard({ sentence, markAnswer, words, sentenceIndex }) {
           {sentence.translation}
         </h2>
       </div>  
-      <div className='flex justify-center my-6' ref={containerRef}>
+      <div className='flex justify-center my-6 w-full' ref={containerRef}>
         {sentence.words.map((word, wordIndex) => (
           <div key={wordIndex} className='m-1 relative'>
             <input
