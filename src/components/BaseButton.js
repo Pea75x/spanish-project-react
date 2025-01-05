@@ -30,7 +30,7 @@ function BaseButton({ text, link = '', column = false, input, subHeadings }) {
       </Link>
       <div>
         {subHeadings && (
-          <div className='flex flex-col items-center text-center text-gray-800 font-semibold text-2xl border-t border-gray-400 rounded-b-lg shadow'>
+          <div className='flex flex-col items-center text-center text-gray-800 font-semibold text-xl border-t border-gray-400 rounded-b-lg shadow'>
             {subHeadings.length &&
               subHeadings.map((heading) => (
                 <div
@@ -38,7 +38,7 @@ function BaseButton({ text, link = '', column = false, input, subHeadings }) {
                   onClick={() =>
                     navigate(`/${text}`, { state: { gameId: heading.id } })
                   }
-                  className='h-12 flex items-center w-full justify-center hover:bg-orange-200 rounded-b-lg'
+                  className='h-12 flex items-center w-full justify-center hover:bg-orange-200 rounded-b-lg hover:rounded-none'
                 >
                   {titleCase(heading.name)}
                 </div>
