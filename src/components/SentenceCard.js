@@ -63,15 +63,15 @@ function SentenceCard({ sentence, markAnswer, words, sentenceIndex }) {
           {sentence.translation}
         </h2>
       </div>  
-      <div className='flex justify-center my-6 w-full' ref={containerRef}>
+      <div className={`flex justify-center my-6 w-full ${sentence.words.length >= 7 && "flex-wrap"}`} ref={containerRef}>
         {sentence.words.map((word, wordIndex) => (
           <div key={wordIndex} className='m-1 relative'>
             <input
               value={playersAnswer[wordIndex] || ''}
-              className={`rounded-md border-0 p-2 text-gray-900 ring-1 ring-black h-7 w-full ${
+              className={`rounded-md border-0 p-2 text-gray-900 ring-1 ring-black h-7 ${
                 word.correct === false &&
                 'border-2 border-red-500 bg-red-50 text-red-600'
-              }`}
+              } ${sentence.words.length >= 7 ? 'w-[120px]' : 'w-full'}`}
               onClick={() => onInputClick(wordIndex)}
               type='text'
               id='myInput'
